@@ -1,598 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Holiday Coach — Pro Edition</title>
-<style>
-:root{--bg:#0b0f14;--card:#111824;--text:#e8eef7;--muted:#9eb1c9;--accent:#49a7ff;--success:#36d07f;--warn:#ffb020;--danger:#ff6b6b;--border:#1c2432;--chip:#0f1621}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-header{position:sticky;top:0;z-index:3;background:linear-gradient(180deg,rgba(11,15,20,.95),rgba(11,15,20,.8),rgba(11,15,20,0));border-bottom:1px solid var(--border)}
-.wrap{max-width:1160px;margin:0 auto;padding:14px 16px}
-h1{margin:0;font-size:1.25rem}.sub{color:var(--muted);font-size:.95rem;margin-top:4px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tab{padding:8px 12px;border:1px solid var(--border);background:var(--chip);border-radius:10px;cursor:pointer}.tab.active{background:var(--accent);color:#04121e;font-weight:700;border-color:transparent}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
-.grid{display:grid;gap:14px}.two{grid-template-columns:1.1fr .9fr}@media(max-width:980px){.two{grid-template-columns:1fr}}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.pill{padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--chip)}
-.btn{background:var(--accent);color:#03101e;font-weight:700;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}.btn.secondary{background:#0f1722;color:var(--text);border:1px solid var(--border)}.btn.ghost{background:transparent;border:1px dashed var(--border);color:var(--muted)}
-.small{font-size:.9rem;color:var(--muted)}.label{padding:4px 8px;border-radius:8px;border:1px solid var(--border);display:inline-block;font-size:.85rem;color:var(--muted)}
-.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid var(--border);padding:8px;text-align:left}.table th{background:#0f1722}
-.checkline{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--border);border-radius:10px;margin:6px 0;background:#0f1722}
-input[type=checkbox]{width:20px;height:20px}
-.calendar{max-height:60vh;overflow:auto;border:1px solid var(--border);border-radius:12px}
-.dayrow{display:grid;grid-template-columns:106px 1fr 130px 130px;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border)}.dayrow:nth-child(even){background:#0f1722}
-.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0b1220;border:1px solid var(--border);border-radius:6px;padding:1px 6px}
-.timer{display:flex;gap:8px;align-items:center}
-.timer .time{min-width:68px;text-align:center;font-weight:800}
-.exrow{border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0;background:#0f1722}
-.gif{max-width:100%;border-radius:10px;border:1px solid var(--border);background:#0b1220}
-.progress{height:10px;background:#0e1420;border:1px solid var(--border);border-radius:999px;overflow:hidden}
-.progress>span{display:block;height:100%;background:var(--success);width:0%}
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2674.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
 </head>
 <body>
-<header class="wrap">
-  <h1>Holiday Coach — Pro Edition</h1>
-  <div class="sub">Spin Mon/Wed/Sat. Bulk→Cut auto‑switch, chicken‑rice‑veg base, beer is “free”. Choose any workout any day. Timers + GIFs + last weights.</div>
-  <div class="tabs" id="tabs">
-    <div class="tab active" data-tab="today">Today</div>
-    <div class="tab" data-tab="calendar">Calendar</div>
-    <div class="tab" data-tab="shopping">Shopping</div>
-    <div class="tab" data-tab="prep">Prep</div>
-    <div class="tab" data-tab="progression">Progression</div>
-    <div class="tab" data-tab="weight">Weight</div>
-    <div class="tab" data-tab="chat">Chat</div>
-    <div class="tab" data-tab="settings">Settings</div>
-  </div>
-</header>
-
-<main class="wrap">
-  <!-- TODAY -->
-  <section class="card" id="tab-today">
-    <div class="row">
-      <span class="pill" id="phasePill">Phase</span>
-      <label class="pill">Today: 
-        <select id="todayType">
-          <option>Spin</option><option>Push</option><option>Pull</option><option>Legs</option><option>Upper</option><option>Rest</option>
-        </select>
-      </label>
-      <span class="pill" id="kcalPill">Target</span>
-      <span class="pill" id="beerPill">Beer: 0/4</span>
-      <span class="pill" id="pointsPill">0 pts</span>
-    </div>
-
-    <div class="grid two">
-      <div>
-        <h3>Workout Builder</h3>
-        <div class="small">Pick exercises, then log each set. Rest timer will guide you.</div>
-        <div class="row" style="margin:6px 0;">
-          <label class="pill">Template: 
-            <select id="templateSel">
-              <option value="auto">Auto (based on type)</option>
-              <option value="custom">Custom</option>
-            </select>
-          </label>
-          <button class="btn" id="addExercise">Add Exercise</button>
-        </div>
-        <div id="exerciseList"></div>
-      </div>
-      <div>
-        <h3>Meals (Chicken–Rice–Veg base)</h3>
-        <div id="mealsBox" class="card small"></div>
-        <h3 style="margin-top:10px;">Notes</h3>
-        <textarea id="notes" style="width:100%;min-height:90px" class="card small" placeholder="How did today go?"></textarea>
-        <div class="row" style="margin-top:8px;">
-          <button class="btn" id="saveToday">Save Today</button>
-          <button class="btn secondary" id="clearToday">Clear Today</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CALENDAR -->
-  <section class="card" id="tab-calendar" style="display:none">
-    <h3>Full Plan</h3>
-    <div class="small">Tap a row to set the day’s type. Left badge shows completion (workout/meals).</div>
-    <div class="calendar" id="calendar"></div>
-  </section>
-
-  <!-- SHOPPING -->
-  <section class="card" id="tab-shopping" style="display:none">
-    <div class="row"><h3 style="margin:0">Shopping List (Auto, Weekly)</h3><span class="pill" id="shopWeek"></span></div>
-    <div class="small">Quantities scale with phase + weight trend. Base: chicken–rice–veg; extras optional.</div>
-    <table class="table" id="shoppingTable"><thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead><tbody></tbody></table>
-    <div class="row" style="margin-top:8px"><button class="btn" id="exportShop">Export CSV</button></div>
-  </section>
-
-  <!-- PREP -->
-  <section class="card" id="tab-prep" style="display:none">
-    <h3>Sunday Prep (90 minutes, low cleanup)</h3>
-    <div class="small">All temps in °C.</div>
-    <ul id="prepList"></ul>
-  </section>
-
-  <!-- PROGRESSION -->
-  <section class="card" id="tab-progression" style="display:none">
-    <h3>Progression History</h3>
-    <div class="small">Tap any exercise to view your recent sets and bests. Suggestions auto-update.</div>
-    <div id="history"></div>
-  </section>
-
-  <!-- WEIGHT -->
-  <section class="card" id="tab-weight" style="display:none">
-    <h3>Weight Tracker</h3>
-    <div class="row">
-      <label class="pill">Date: <input type="date" id="wtDate"></label>
-      <label class="pill">Weight (kg): <input type="number" id="wtVal" step="0.01" style="width:120px"></label>
-      <button class="btn" id="wtAdd">Add</button>
-      <button class="btn secondary" id="wtExport">Export CSV</button>
-    </div>
-    <div class="small" style="margin-top:6px">Tip: weigh after waking, post‑toilet, before eating.</div>
-    <table class="table" id="wtTable" style="margin-top:10px"><thead><tr><th>Date</th><th>Weight (kg)</th></tr></thead><tbody></tbody></table>
-    <div class="card small" style="margin-top:10px">
-      <div>7‑day avg trend: <b id="trendText">—</b></div>
-      <div class="progress" style="margin-top:6px"><span id="trendBar"></span></div>
-      <div class="small">Auto‑adjust is <span id="autoStatus">On</span>. Last adjust: <span id="lastAdjust">—</span></div>
-    </div>
-  </section>
-
-  <!-- CHAT -->
-  <section class="card" id="tab-chat" style="display:none">
-    <h3>Chat</h3>
-    <div id="chatBox" style="max-height:50vh;overflow:auto;border:1px solid var(--border);border-radius:10px;padding:10px;background:#0f1722"></div>
-    <div class="row" style="margin-top:8px">
-      <input id="chatInput" placeholder="Type a message…" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0b1220;color:var(--text)">
-      <button class="btn" id="sendMsg">Send</button>
-      <button class="btn secondary" id="exportChat">Export Chat</button>
-    </div>
-    <div class="small" style="margin-top:6px">Commands: <span class="kbd">/add beer</span> (log a pint), <span class="kbd">/set rest 90</span>, <span class="kbd">/swap type Push</span>.</div>
-  </section>
-
-  <!-- SETTINGS -->
-  <section class="card" id="tab-settings" style="display:none">
-    <h3>Settings</h3>
-    <table class="table small">
-      <tr><th>Holiday</th><td><input type="date" id="holidayDate"></td></tr>
-      <tr><th>Cut starts</th><td><input type="date" id="cutDate"></td></tr>
-      <tr><th>Base kcal (Bulk)</th><td><input type="number" id="bulkBase" value="3200" style="width:120px"></td></tr>
-      <tr><th>Base kcal (Cut)</th><td><input type="number" id="cutBase" value="2700" style="width:120px"></td></tr>
-      <tr><th>Auto‑adjust</th><td><label class="pill"><input type="checkbox" id="autoAdj" checked> Enabled</label></td></tr>
-      <tr><th>Beer per week</th><td><input type="number" id="beerPerWeek" value="4" style="width:80px"></td></tr>
-      <tr><th>Default rest (compounds)</th><td><input type="number" id="restComp" value="90" style="width:80px"> s</td></tr>
-      <tr><th>Default rest (accessory)</th><td><input type="number" id="restAcc" value="60" style="width:80px"> s</td></tr>
-    </table>
-  </section>
-</main>
-
-<script>
-(function(){
-  const KEY="hc-pro-v1";
-  function load(){ try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}} }
-  function save(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-  function iso(d){ return d.toISOString().slice(0,10); }
-  const today = new Date();
-
-  // ---------- Settings & Phase ----------
-  const defaultHoliday = new Date(2025,9,25);
-  const defaultCut = new Date(2025,8,15);
-  const defaults = {holiday: iso(defaultHoliday), cut: iso(defaultCut), bulkBase:3200, cutBase:2700, auto:true, beer:4, restC:90, restA:60};
-  if(!load().settings){ const s=load(); s.settings=defaults; save(s); }
-
-  function getSetting(k){ return (load().settings||defaults)[k]; }
-  function setSetting(k,v){ const s=load(); s.settings=s.settings||defaults; s.settings[k]=v; save(s); }
-
-  function holiday(){ return new Date(getSetting("holiday")); }
-  function cutDate(){ return new Date(getSetting("cut")); }
-  function phaseFor(d){ return d < cutDate() ? "Bulk" : "Cut"; }
-  function baseKcal(phase){ return phase==="Bulk" ? getSetting("bulkBase") : getSetting("cutBase"); }
-
-  // ---------- Beer tracker ----------
-  function weekKey(d){ const x=new Date(d.getFullYear(),d.getMonth(),d.getDate()); const dow=(x.getDay()+6)%7; x.setDate(x.getDate()-dow); return "w-"+iso(x); }
-  function beersThisWeek(){ const wk=weekKey(today); const s=load(); s.beer=s.beer||{}; save(s); return s.beer[wk]||0; }
-  function addBeer(n=1){ const wk=weekKey(today); const s=load(); s.beer=s.beer||{}; s.beer[wk]=(s.beer[wk]||0)+n; save(s); renderTodayTop(); }
-
-  // ---------- Schedule & Day Types ----------
-  // Default schedule: Spin Mon/Wed/Sat; Push Tue; Pull Thu; Legs Fri; Upper Sun
-  function defaultTypeFor(d){
-    const idx=(d.getDay()+6)%7;
-    return ["Spin","Push","Spin","Pull","Legs","Spin","Upper"][idx];
-  }
-  function dayType(dateIso){
-    const s=load(); s.types=s.types||{}; save(s);
-    return s.types[dateIso] || defaultTypeFor(new Date(dateIso));
-  }
-  function setDayType(dateIso, t){ const s=load(); s.types=s.types||{}; s.types[dateIso]=t; save(s); }
-
-  // ---------- Meals (CRV base) ----------
-  function mealsFor(phase){
-    // Chicken–Rice–Veg portions scale by phase
-    const portions = phase==="Bulk"
-      ? {chicken:180, rice:250, veg:200, oil:10}
-      : {chicken:150, rice:180, veg:250, oil:5};
-    return {
-      breakfast: "Your set breakfast smoothie/yogurt + creatine",
-      lunch: `Chicken ${portions.chicken}g + Rice ${portions.rice}g + Veg ${portions.veg}g, +${portions.oil}g oil/sauce`,
-      dinner: `Chicken ${portions.chicken}g + Rice ${portions.rice}g + Veg ${portions.veg}g, +${portions.oil}g oil/sauce`,
-      prebed: "Greek yogurt + honey or whey + milk"
-    };
-  }
-
-  // ---------- Exercise Library ----------
-  const LIB = {
-    "Barbell Bench Press": { rest:90, tips:"Feet planted, shoulder blades retracted, touch lower chest, full lockout.", gif:"https://media.tenor.com/0Nn6lQnV4iEAAAAC/bench-press.gif" },
-    "Incline Bench Press (Barbell)": { rest:90, tips:"Bench 30–45°, wrists stacked over elbows, lower to upper chest.", gif:"https://media.tenor.com/2uOaYxH1b2gAAAAC/incline-bench.gif" },
-    "Overhead Press": { rest:90, tips:"Glutes tight, ribs down, press in a straight line, no lean‑back.", gif:"https://media.tenor.com/0jR3k6zJHfEAAAAC/shoulder-press.gif" },
-    "Barbell Row": { rest:90, tips:"Hinge ~45°, pull to mid‑abdomen, keep spine neutral.", gif:"https://media.tenor.com/Jk1D6A2xA1oAAAAC/barbell-row.gif" },
-    "Romanian Deadlift": { rest:120, tips:"Hips back, soft knees, bar close to legs, feel hamstrings stretch.", gif:"https://media.tenor.com/r4rQeXfVg9EAAAAC/romanian-deadlift.gif" },
-    "Front Squat": { rest:120, tips:"Elbows high, sit between hips, keep torso upright.", gif:"https://media.tenor.com/b3Q3p2R0JfAAAAAC/front-squat.gif" },
-    "Back Squat": { rest:120, tips:"Brace hard, hips and knees together, drive up through mid‑foot.", gif:"https://media.tenor.com/F6pHcF2d0EoAAAAC/squat.gif" },
-    "Pull‑Ups / Chin‑Ups": { rest:90, tips:"Full hang, pull chest to bar, control down.", gif:"https://media.tenor.com/Gm6pQy0lNeUAAAAd/pull-up.gif" },
-    "Incline Dumbbell Press": { rest:90, tips:"45° bench, elbows ~45°, touch lightly, squeeze at top.", gif:"https://media.tenor.com/3k3v4wYwXrMAAAAC/incline-dumbbell-press.gif" },
-    "Dumbbell Lateral Raise": { rest:60, tips:"Lead with elbows, small bend, stop at shoulder height.", gif:"https://media.tenor.com/smX3O5Q2SxgAAAAC/lateral-raise.gif" },
-    "Hammer Curl": { rest:60, tips:"Neutral grip, elbows fixed to sides, full range.", gif:"https://media.tenor.com/PYk5n6Ofo3QAAAAC/hammer-curl.gif" },
-    "Skull Crushers": { rest:60, tips:"Elbows in, lower behind head, extend without flaring.", gif:"https://media.tenor.com/7mH9Z8GmDXQAAAAC/skull-crushers.gif" },
-    "Bulgarian Split Squat": { rest:90, tips:"Long stride, torso tall, knee tracks toes, push through front foot.", gif:"https://media.tenor.com/5mG1XQ3N3rQAAAAC/bulgarian-split-squat.gif" }
-  };
-
-  const TEMPLATES = {
-    "Push": ["Barbell Bench Press","Incline Bench Press (Barbell)","Overhead Press","Dumbbell Lateral Raise","Skull Crushers"],
-    "Pull": ["Barbell Row","Pull‑Ups / Chin‑Ups","Hammer Curl"],
-    "Legs": ["Back Squat","Romanian Deadlift","Bulgarian Split Squat"],
-    "Upper": ["Incline Bench Press (Barbell)","Barbell Row","Overhead Press","Incline Dumbbell Press","Hammer Curl"]
-  };
-
-  // ---------- Storage helpers ----------
-  function getState(){ return load(); }
-  function ensure(obj, key, init){ if(!obj[key]) obj[key]=init; }
-  function dayKey(d){ return iso(d); }
-  function dayData(d){
-    const s=getState(); ensure(s,"days",{}); const k=dayKey(d); ensure(s.days,k,{type: defaultTypeFor(d), workout:[], notes:"", doneW:false, doneM:false}); save(s); return s.days[k];
-  }
-  function defaultTypeFor(d){
-    const idx=(d.getDay()+6)%7;
-    return ["Spin","Push","Spin","Pull","Legs","Spin","Upper"][idx];
-  }
-
-  // ---------- UI Rendering ----------
-  function el(id){ return document.getElementById(id); }
-
-  function renderTodayTop(){
-    const d = today, dd=dayData(d);
-    const phase = phaseFor(d);
-    el("phasePill").textContent = phase;
-    el("todayType").value = dd.type || defaultTypeFor(d);
-    el("kcalPill").textContent = "Target: " + baseKcal(phase) + " kcal";
-    const beerUsed = beersThisWeek(), beerMax = getSetting("beer");
-    el("beerPill").textContent = `Beer: ${Math.min(beerUsed, beerMax)}/${beerMax}`;
-  }
-
-  function renderMeals(){
-    const m = mealsFor(phaseFor(today));
-    el("mealsBox").innerHTML = `
-      <div><b>Breakfast</b>: ${m.breakfast}</div>
-      <div><b>Lunch</b>: ${m.lunch}</div>
-      <div><b>Dinner</b>: ${m.dinner}</div>
-      <div><b>Pre‑bed</b>: ${m.prebed}</div>
-      <div class="small" style="margin-top:6px">Beer calories are “free”; auto‑adjust handles any slowdown.</div>
-    `;
-  }
-
-  function addExerciseRow(name){
-    const ex = LIB[name] || {rest:90,tips:"",gif:""};
-    const wrap = document.createElement("div"); wrap.className="exrow";
-    wrap.innerHTML = `
-      <div class="row"><strong>${name}</strong> <span class="label">${ex.rest}s rest</span> <button class="btn ghost rem">Remove</button></div>
-      <div class="small">${ex.tips}</div>
-      <img class="gif" src="${ex.gif}" alt="${name} form demo (requires internet)" onerror="this.style.display='none'">
-      <table class="table" style="margin-top:8px">
-        <thead><tr><th>Set</th><th>Weight (kg)</th><th>Reps</th><th>Last</th><th>Target</th><th>Timer</th></tr></thead>
-        <tbody>
-          ${[1,2,3,4].map((i)=>`<tr>
-            <td>${i}</td>
-            <td><input type="number" step="0.5" class="w" style="width:90px"></td>
-            <td><input type="number" step="1" class="r" style="width:70px"></td>
-            <td class="last">—</td>
-            <td class="tgt">—</td>
-            <td><div class="timer"><span class="time">00:${String(ex.rest).padStart(2,'0')}</span><button class="btn secondary start">Start</button><button class="btn ghost reset">Reset</button></div></td>
-          </tr>`).join("")}
-        </tbody>
-      </table>`;
-    // Hook up timer buttons
-    wrap.querySelectorAll(".start").forEach((btn, idx)=>{
-      btn.addEventListener("click",()=>{
-        const row = btn.closest("tr");
-        const timeEl = row.querySelector(".time");
-        let secs = ex.rest;
-        clearInterval(btn._iv);
-        timeEl.textContent = fmt(secs);
-        btn._iv = setInterval(()=>{
-          secs--; timeEl.textContent = fmt(secs);
-          if(secs<=0){ clearInterval(btn._iv); timeEl.textContent="REST DONE"; }
-        },1000);
-      });
-    });
-    wrap.querySelectorAll(".reset").forEach((btn)=>{
-      btn.addEventListener("click",()=>{
-        const row = btn.closest("tr"); const timeEl = row.querySelector(".time"); timeEl.textContent = fmt(ex.rest);
-        clearInterval(btn._iv);
-      });
-    });
-    wrap.querySelector(".rem").addEventListener("click",()=>{ wrap.remove(); saveTodayWorkout(); });
-    el("exerciseList").appendChild(wrap);
-    // Load last & targets
-    populateLasts(name, wrap);
-  }
-
-  function fmt(secs){ const m = Math.floor(secs/60), s=secs%60; return String(m).padStart(2,'0')+":"+String(s).padStart(2,'0'); }
-
-  function populateLasts(name, wrap){
-    const hist = (load().history||{})[name]||[];
-    const last = hist.length ? hist[hist.length-1] : null;
-    wrap.querySelectorAll("tbody tr").forEach((tr,i)=>{
-      const lastCell = tr.querySelector(".last"); const tgtCell=tr.querySelector(".tgt");
-      if(last && last.sets && last.sets[i]){
-        const ls = last.sets[i]; lastCell.textContent = ls.w+"kg × "+ls.r;
-        // Suggest target: +2.5kg if reps≥top end, else +1 rep
-        const reps = Number(ls.r||0);
-        if(reps>=10) tgtCell.textContent = (Number(ls.w)+2.5)+"kg × 6–8";
-        else tgtCell.textContent = ls.w+"kg × "+(reps+1);
-      } else {
-        lastCell.textContent = "—"; tgtCell.textContent="—";
-      }
-    });
-  }
-
-  function buildTemplate(type){
-    el("exerciseList").innerHTML="";
-    if(!TEMPLATES[type]) return;
-    TEMPLATES[type].forEach(addExerciseRow);
-  }
-
-  function renderToday(){
-    renderTodayTop(); renderMeals();
-    const d = today, dd=dayData(d);
-    // Set selector and template
-    el("todayType").value = dd.type;
-    el("templateSel").value = dd.workout?.length ? "custom" : "auto";
-    if(dd.workout?.length){
-      el("exerciseList").innerHTML="";
-      dd.workout.forEach(ex => addExerciseRow(ex.name));
-      // fill weights/reps
-      const rows = el("exerciseList").querySelectorAll(".exrow");
-      rows.forEach((wrap,i)=>{
-        const sets = dd.workout[i].sets||[];
-        wrap.querySelectorAll("tbody tr").forEach((tr, si)=>{
-          const w=tr.querySelector(".w"); const r=tr.querySelector(".r");
-          if(sets[si]){ w.value = sets[si].w||""; r.value = sets[si].r||""; }
-        });
-      });
-    } else {
-      buildTemplate(dd.type);
-    }
-    el("notes").value = dd.notes||"";
-  }
-
-  function saveTodayWorkout(){
-    const d = today, dd=dayData(d);
-    const rows = el("exerciseList").querySelectorAll(".exrow");
-    dd.workout = Array.from(rows).map(wrap => {
-      const name = wrap.querySelector("strong").textContent;
-      const sets = Array.from(wrap.querySelectorAll("tbody tr")).map(tr => ({ w: tr.querySelector(".w").value, r: tr.querySelector(".r").value }));
-      return {name, sets};
-    });
-    dd.type = el("todayType").value;
-    dd.notes = el("notes").value;
-    const s=getState(); s.days[dayKey(d)] = dd; save(s);
-  }
-
-  function saveToHistory(){
-    const d = today, dd=dayData(d);
-    const s=getState(); s.history = s.history || {};
-    dd.workout.forEach(ex => {
-      s.history[ex.name] = s.history[ex.name] || [];
-      s.history[ex.name].push({ date: iso(d), sets: ex.sets });
-    });
-    save(s);
-  }
-
-  // Buttons
-  el("todayType").addEventListener("change", ()=>{ saveTodayWorkout(); if(el("templateSel").value==="auto"){ buildTemplate(el("todayType").value); } });
-  el("templateSel").addEventListener("change", ()=>{
-    if(el("templateSel").value==="auto"){ buildTemplate(el("todayType").value); }
-  });
-  el("addExercise").addEventListener("click", ()=>{
-    const name = prompt("Exercise name (choose from library or type your own):\n"+Object.keys(LIB).join(", "));
-    if(!name) return;
-    addExerciseRow(name);
-    saveTodayWorkout();
-  });
-  el("saveToday").addEventListener("click", ()=>{ saveTodayWorkout(); saveToHistory(); alert("Saved!"); });
-  el("clearToday").addEventListener("click", ()=>{
-    const d=today; const s=getState(); s.days[s=>{}]; const k=dayKey(d);
-    const dd = dayData(d); dd.workout=[]; dd.notes=""; const st=getState(); st.days[k]=dd; save(st); renderToday();
-  });
-
-  // ---------- Calendar ----------
-  function renderCalendar(){
-    const cal = document.getElementById("calendar"); cal.innerHTML="";
-    const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const end = holiday();
-    const d = new Date(start);
-    while(d<=end){
-      const k = iso(d); const dd = dayData(d);
-      const row = document.createElement("div"); row.className="dayrow";
-      const left = document.createElement("div"); left.innerHTML = `<div>${k}</div><div class="small">${phaseFor(d)}</div>`;
-      const mid = document.createElement("div");
-      const sel = document.createElement("select"); ["Spin","Push","Pull","Legs","Upper","Rest"].forEach(t=>{ const o=document.createElement("option"); o.textContent=t; o.selected = (dd.type===t); sel.appendChild(o); });
-      sel.addEventListener("change", ()=>{ setDayType(k, sel.value); const s=getState(); s.days[k].type=sel.value; save(s); });
-      mid.appendChild(sel);
-      const c3 = document.createElement("div"); c3.innerHTML = `<div class="label">${dd.workout?.length||0} exercises</div>`;
-      const c4 = document.createElement("div"); c4.innerHTML = `<div class="label">${dd.notes?.length? "Has notes":"—"}</div>`;
-      row.appendChild(left); row.appendChild(mid); row.appendChild(c3); row.appendChild(c4);
-      cal.appendChild(row);
-      d.setDate(d.getDate()+1);
-    }
-  }
-
-  // ---------- Shopping & Prep ----------
-  function shoppingBase(phase){
-    const mult = phase==="Bulk"?1.0:0.85; // slight scale down on cut
-    return [
-      ["Protein","Chicken breast", (mult*1.8).toFixed(2)+" kg","Main protein base"],
-      ["Carbs","Rice (dry)", (mult*0.60).toFixed(2)+" kg","≈1.8 kg cooked bulk base"],
-      ["Veg","Mixed veg (broccoli/pepper etc.)", (mult*1.8).toFixed(2)+" kg","Stir‑fry or steam"],
-      ["Fats","Olive oil", (mult*0.15).toFixed(2)+" L","Cooking/sauces"],
-      ["Dairy","Greek yogurt", (mult*3.0).toFixed(2)+" kg","Snacks & pre‑bed"],
-      ["Pantry","Spices/sauces", "as needed","Garlic, paprika, soy, chili, honey"]
-    ];
-  }
-  function renderShop(){
-    const ws = weekKey(today);
-    document.getElementById("shopWeek").textContent = ws.replace("w-","") + " → +6d";
-    const phase = phaseFor(today);
-    const rows = shoppingBase(phase);
-    const tb = document.querySelector("#shoppingTable tbody"); tb.innerHTML="";
-    rows.forEach(r=>{
-      const tr=document.createElement("tr");
-      r.forEach((cell,i)=>{ const td=document.createElement("td"); td.textContent = cell; tr.appendChild(td); });
-      tb.appendChild(tr);
-    });
-    document.getElementById("exportShop").onclick = ()=>{
-      const csv = ["Category,Item,Qty,Notes"].concat(rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(","))).join("\n");
-      downloadText("Shopping-"+ws+".csv", csv);
-    };
-  }
-  function renderPrep(){
-    const steps=[
-      "Preheat oven 220°C (fan 200°C); line 2 pans with parchment.",
-      "Start rice: 600 g dry (1:1.8 water), simmer 15–18 min, rest 10.",
-      "Cube 1.5–1.8 kg chicken; toss with 1–2 tbsp oil + spices; spread on pan.",
-      "Roast chicken 220°C for 18–22 min to 74°C internal; rest 5, portion 150–180 g.",
-      "Chop 1.5–1.8 kg mixed veg; store raw for quick 6–8 min stir‑fries.",
-      "Portion rice: 180–250 g cooked; veg 200–250 g; add 5–10 g oil per meal."
-    ];
-    const ul=el("prepList"); ul.innerHTML=""; steps.forEach(t=>{ const li=document.createElement("li"); li.textContent=t; ul.appendChild(li); });
-  }
-
-  // ---------- Weight tracker & trend ----------
-  function addWeight(dateIso, kg){
-    const s=getState(); s.weight=s.weight||[]; s.weight.push({d:dateIso,w:kg}); s.weight.sort((a,b)=>a.d.localeCompare(b.d)); save(s);
-    renderWeight();
-  }
-  function renderWeight(){
-    const s=getState(); const tbl=el("wtTable").querySelector("tbody"); tbl.innerHTML="";
-    (s.weight||[]).forEach(row=>{ const tr=document.createElement("tr"); tr.innerHTML=`<td>${row.d}</td><td>${row.w}</td>`; tbl.appendChild(tr); });
-    // 7-day moving average rate (per week)
-    const w=s.weight||[]; if(w.length>=2){
-      const last7 = w.slice(-7); const first = last7[0]; const last = last7[last7.length-1];
-      const days = Math.max(1,(new Date(last.d)-new Date(first.d))/(1000*60*60*24));
-      const ratePerWeek = (last.w - first.w) / days * 7;
-      el("trendText").textContent = (ratePerWeek>0?"+":"") + ratePerWeek.toFixed(2) + " kg/wk";
-      const pct = Math.min(100, Math.abs(ratePerWeek)*100/1.0); // scale bar
-      el("trendBar").style.width = pct+"%";
-      // Auto-adjust? (beer is free; adjust food if off target)
-      if(getSetting("auto")){
-        const phase = phaseFor(today);
-        const targetMin = phase==="Bulk"?0.25:-0.75;
-        const targetMax = phase==="Bulk"?0.50:-0.50;
-        if(ratePerWeek < targetMin || ratePerWeek > targetMax){
-          const dir = ratePerWeek < targetMin ? +200 : -200; // eat more if gaining too slow (bulk) or losing too fast (cut)
-          const s2=getState(); s2.kcalAdj = (s2.kcalAdj||0) + dir; s2.kcalAdj = Math.max(-600, Math.min(600, s2.kcalAdj)); save(s2);
-          el("lastAdjust").textContent = (dir>0?"+200":"−200")+" kcal applied (total "+(s2.kcalAdj)+")";
-        }
-    }
-    }
-  }
-
-  // ---------- History (progression) ----------
-  function renderHistory(){
-    const s=getState(); const box=el("history"); box.innerHTML="";
-    const hist = s.history||{};
-    Object.keys(hist).forEach(name=>{
-      const card=document.createElement("div"); card.className="card";
-      const rows=hist[name]; const last=rows[rows.length-1];
-      card.innerHTML=`<div class="row"><strong>${name}</strong> <span class="label">Last: ${last.sets.map(s=>s.w+"×"+s.r).join(", ")}</span></div>`;
-      box.appendChild(card);
-    });
-  }
-
-  // ---------- Chat ----------
-  function chatLoad(){ const s=load(); s.chat=s.chat||[]; save(s); return s.chat; }
-  function chatSave(arr){ const s=load(); s.chat=arr; save(s); }
-  function chatRender(){ const box=el("chatBox"); box.innerHTML=""; chatLoad().forEach(m=>{ const div=document.createElement("div"); div.style.margin="6px 0"; div.innerHTML=`<span class="pill">${m.role}</span> ${m.text}`; box.appendChild(div); }); box.scrollTop=box.scrollHeight; }
-  function chatSend(text, role="you"){ const arr=chatLoad(); arr.push({role,text,t:Date.now()}); chatSave(arr); chatRender(); if(text.startsWith("/")) applyCmd(text); }
-  function applyCmd(cmd){
-    const p=cmd.trim().split(/\s+/);
-    if(p[0]==="/add" && p[1]==="beer"){ addBeer(1); chatSend("Logged 1 beer 🍺","coach"); return; }
-    if(p[0]==="/set" && p[1]==="rest"){ const v=parseInt(p[2]||"90",10); setSetting("restC",v); setSetting("restA",Math.max(45,Math.round(v*0.66))); chatSend(`Rest set to ${v}s compounds / ${Math.max(45,Math.round(v*0.66))}s accessories`,"coach"); return; }
-    if(p[0]==="/swap" && p[1]==="type"){ const v=p[2]||"Push"; const k=iso(today); setDayType(k,v); const s=getState(); s.days[k].type=v; save(s); renderToday(); chatSend("Today set to "+v,"coach"); return; }
-  }
-
-  // ---------- Util ----------
-  function downloadText(name, text){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:"text/plain"})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); }
-
-  // ---------- Tab wiring ----------
-  document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
-    const name=t.dataset.tab; document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active", x===t));
-    ["today","calendar","shopping","prep","progression","weight","chat","settings"].forEach(id=>{
-      document.getElementById("tab-"+id).style.display = (id===name)?"block":"none";
-    });
-    if(name==="calendar") renderCalendar();
-    if(name==="shopping") renderShop();
-    if(name==="prep") renderPrep();
-    if(name==="progression") renderHistory();
-    if(name==="weight") renderWeight();
-    if(name==="chat") chatRender();
-  }));
-
-  // Weight tab inputs
-  document.getElementById("wtAdd").addEventListener("click",()=>{
-    const d = document.getElementById("wtDate").value || iso(today);
-    const v = parseFloat(document.getElementById("wtVal").value||"");
-    if(!v){ alert("Enter weight"); return; }
-    addWeight(d, v);
-  });
-  document.getElementById("wtExport").addEventListener("click",()=>{
-    const s=getState(); const rows=(s.weight||[]).map(r=>`${r.d},${r.w}`).join("\n");
-    downloadText("weights.csv","date,weight\n"+rows);
-  });
-
-  // Chat
-  document.getElementById("sendMsg").addEventListener("click",()=>{
-    const v=document.getElementById("chatInput").value.trim(); if(!v) return; document.getElementById("chatInput").value=""; chatSend(v,"you");
-  });
-  document.getElementById("exportChat").addEventListener("click",()=>{
-    const arr=chatLoad(); downloadText("chat.txt", arr.map(m=>`[${new Date(m.t).toLocaleString()}] ${m.role}: ${m.text}`).join("\n"));
-  });
-
-  // Settings wiring
-  document.getElementById("holidayDate").value = getSetting("holiday");
-  document.getElementById("cutDate").value = getSetting("cut");
-  document.getElementById("bulkBase").value = getSetting("bulkBase");
-  document.getElementById("cutBase").value = getSetting("cutBase");
-  document.getElementById("autoAdj").checked = getSetting("auto");
-  document.getElementById("beerPerWeek").value = getSetting("beer");
-  document.getElementById("restComp").value = getSetting("restC");
-  document.getElementById("restAcc").value = getSetting("restA");
-  document.getElementById("holidayDate").addEventListener("change", e=>setSetting("holiday", e.target.value));
-  document.getElementById("cutDate").addEventListener("change", e=>setSetting("cut", e.target.value));
-  document.getElementById("bulkBase").addEventListener("change", e=>setSetting("bulkBase", parseInt(e.target.value||"3200",10)));
-  document.getElementById("cutBase").addEventListener("change", e=>setSetting("cutBase", parseInt(e.target.value||"2700",10)));
-  document.getElementById("autoAdj").addEventListener("change", e=>setSetting("auto", e.target.checked));
-  document.getElementById("beerPerWeek").addEventListener("change", e=>setSetting("beer", parseInt(e.target.value||"4",10)));
-  document.getElementById("restComp").addEventListener("change", e=>setSetting("restC", parseInt(e.target.value||"90",10)));
-  document.getElementById("restAcc").addEventListener("change", e=>setSetting("restA", parseInt(e.target.value||"60",10)));
-
-  // Init
-  function init(){
-    renderToday();
-    renderCalendar();
-    renderShop();
-    renderPrep();
-  }
-  init();
-})();
-</script>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Holiday Coach&lt;/title&gt;</p>
+<p class="p1">&lt;link rel="manifest" href="manifest.json"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">/* ===== Theme Colors ===== */</p>
+<p class="p1">:root {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--primary: #002FA7; /* Yves Klein Blue */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--secondary: #7BB661; /* Brat Green */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--background: #121212;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--text-light: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--text-muted: #aaaaaa;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--card-bg: #1E1E1E;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ===== Global Styles ===== */</p>
+<p class="p1">body {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: Arial, Helvetica, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--background);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--text-light);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 0;</p>
+<p class="p1">}</p>
+<p class="p1">header {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--primary);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.4em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: bold;</p>
+<p class="p1">}</p>
+<p class="p1">button {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--secondary);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 6px;</p>
+<p class="p1">}</p>
+<p class="p1">button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0.9;</p>
+<p class="p1">}</p>
+<p class="p1">.card {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--card-bg);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 10px;</p>
+<p class="p1">}</p>
+<p class="p1">h2 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--primary);</p>
+<p class="p1">}</p>
+<p class="p1">h3 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--secondary);</p>
+<p class="p1">}</p>
+<p class="p1">.countdown {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--secondary);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: #000;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: bold;</p>
+<p class="p1">}</p>
+<p class="p1">.navbar {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>justify-content: space-around;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--card-bg);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 100%;</p>
+<p class="p1">}</p>
+<p class="p1">.navbar button {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 0 5px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Responsive */</p>
+<p class="p1">@media (max-width: 600px) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>header { font-size: 1.2em; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>button { padding: 8px 10px; }</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;header&gt;Holiday Coach 🏋️‍♂️🌴&lt;/header&gt;</p>
+<p class="p1">&lt;div id="countdown" class="countdown"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;main id="app"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="home" class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Welcome Back!&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p id="welcome-msg"&gt;Let's crush your goals for today.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="today-workout"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="today-meals"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="navbar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="showTab('home')"&gt;Home&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="showTab('workouts')"&gt;Workouts&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="showTab('nutrition')"&gt;Meals&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="showTab('tracking')"&gt;Tracking&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// ===== Countdown Logic =====</p>
+<p class="p1">function updateCountdown() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const holiday = new Date("October 25, 2025 00:00:00").getTime();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const now = new Date().getTime();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const distance = holiday - now;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (distance &lt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("countdown").innerText = "Holiday time! 🏝";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const days = Math.floor(distance / (1000 * 60 * 60 * 24));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("countdown").innerText =</p>
+<p class="p1"><span class="Apple-converted-space">    </span>days + " days until holiday – stay on track!";</p>
+<p class="p1">}</p>
+<p class="p1">setInterval(updateCountdown, 1000 * 60 * 60);</p>
+<p class="p1">updateCountdown();</p>
+<p class="p2"><br></p>
+<p class="p1">// ===== Tab Switching =====</p>
+<p class="p1">function showTab(tabId) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('#app &gt; div').forEach(div =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>div.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById(tabId).style.display = 'block';</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/script&gt;&lt;!-- ===== Workouts Tab ===== --&gt;</p>
+<p class="p1">&lt;div id="workouts" class="card" style="display:none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Workouts&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Select your workout for today and hit start for guided mode.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="workout-list"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ===== Nutrition Tab ===== --&gt;</p>
+<p class="p1">&lt;div id="nutrition" class="card" style="display:none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Meals &amp; Snacks&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="meal-plan"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ===== Tracking Tab ===== --&gt;</p>
+<p class="p1">&lt;div id="tracking" class="card" style="display:none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Tracking&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Current Weight (kg):&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="number" id="weight-input" value="75"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="saveWeight()"&gt;Save&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="weight-history"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// ===== Preloaded Workouts =====</p>
+<p class="p1">const workouts = [</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Full Body Strength", exercises: ["Barbell Squat", "Incline Bench Press", "Dumbbell Row", "Overhead Press", "Bicep Curl", "Tricep Extension"] },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Upper Body", exercises: ["Incline Bench Press", "Overhead Press", "Dumbbell Row", "Bicep Curl", "Tricep Extension"] },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Lower Body", exercises: ["Barbell Squat", "Romanian Deadlift", "Lunge", "Calf Raise"] }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">// ===== Preloaded Meals =====</p>
+<p class="p1">const meals = {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>breakfast: [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"150g Greek yogurt",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"50g oats",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"60g vegan protein (Bulk Powders)",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"6g creatine",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"100g cherry juice",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"100g berries",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"25g peanut butter"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>lunch: [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"Chicken–rice–veg base (portions scale for bulk/cut)"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>snack: [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"150g Greek yogurt",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"100g berries",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"30g peanuts",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"50g smooth peanut butter",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"15g honey"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>dinner: [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>"Chicken–rice–veg base variation"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">// ===== Display Today’s Workout =====</p>
+<p class="p1">document.getElementById("today-workout").innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Today's Workout&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;ul&gt;${workouts[0].exercises.map(e =&gt; `&lt;li&gt;${e}&lt;/li&gt;`).join("")}&lt;/ul&gt;</p>
+<p class="p1">`;</p>
+<p class="p2"><br></p>
+<p class="p1">// ===== Display Meals =====</p>
+<p class="p1">document.getElementById("today-meals").innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Today's Meals&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${meals.breakfast.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${meals.lunch.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${meals.snack.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${meals.dinner.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/ul&gt;</p>
+<p class="p1">`;</p>
+<p class="p2"><br></p>
+<p class="p1">// ===== Meal Plan Tab =====</p>
+<p class="p1">document.getElementById("meal-plan").innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Breakfast&lt;/h3&gt;&lt;ul&gt;${meals.breakfast.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Lunch&lt;/h3&gt;&lt;ul&gt;${meals.lunch.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Snack&lt;/h3&gt;&lt;ul&gt;${meals.snack.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;Dinner&lt;/h3&gt;&lt;ul&gt;${meals.dinner.map(m =&gt; `&lt;li&gt;${m}&lt;/li&gt;`).join("")}&lt;/ul&gt;</p>
+<p class="p1">`;</p>
+<p class="p1">&lt;/script&gt;&lt;script&gt;</p>
+<p class="p1">// ===== Weight Tracking =====</p>
+<p class="p1">let weightHistory = JSON.parse(localStorage.getItem("weightHistory")) || [];</p>
+<p class="p2"><br></p>
+<p class="p1">function saveWeight() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const weight = parseFloat(document.getElementById("weight-input").value);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!isNaN(weight)) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const date = new Date().toLocaleDateString();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>weightHistory.push({ date, weight });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>localStorage.setItem("weightHistory", JSON.stringify(weightHistory));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>renderWeightHistory();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function renderWeightHistory() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const list = weightHistory.map(entry =&gt; `&lt;li&gt;${entry.date}: ${entry.weight} kg&lt;/li&gt;`).join("");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("weight-history").innerHTML = `&lt;ul&gt;${list}&lt;/ul&gt;`;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">renderWeightHistory();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
 </body>
 </html>
