@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Holiday Coach</title>
+<style>
+  :root{
+    --primary:#002FA7; /* Yves Klein Blue */
+    --secondary:#7BB661; /* Brat Green */
+    --bg:#121212; --text:#fff; --muted:#aaa; --card:#1E1E1E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text)}
+  header{background:var(--primary);padding:14px;text-align:center;font-weight:700}
+  .card{background:var(--card);border-radius:10px;padding:14px;margin:12px}
+  h2{color:var(--primary)} h3{color:var(--secondary)}
+  .countdown{background:var(--secondary);color:#000;padding:8px;text-align:center;font-weight:700}
+  .nav{position:fixed;bottom:0;left:0;right:0;display:flex;gap:8px;background:var(--card);padding:10px}
+  .nav button{flex:1;background:var(--secondary);border:0;border-radius:8px;color:#000;font-weight:700;padding:10px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>Holiday Coach 🏋️‍♂️🌴</header>
+<div id="countdown" class="countdown">Loading…</div>
+
+<main id="app">
+  <div id="home" class="card">
+    <h2>Welcome Back!</h2>
+    <p id="welcome-msg">Let's crush your goals for today.</p>
+    <div id="today-workout"></div>
+    <div id="today-meals"></div>
+  </div>
+
+  <div id="workouts" class="card" style="display:none">
+    <h2>Workouts</h2>
+    <p>Select your workout for today and hit start for guided mode.</p>
+    <div id="workout-list"></div>
+  </div>
+
+  <div id="nutrition" class="card" style="display:none">
+    <h2>Meals & Snacks</h2>
+    <div id="meal-plan"></div>
+  </div>
+
+  <div id="tracking" class="card" style="display:none">
+    <h2>Tracking</h2>
+    <div>
+      <label>Current Weight (kg): </label>
+      <input type="number" id="weight-input" value="75">
+      <button id="save-weight">Save</button>
+    </div>
+    <div id="weight-history" style="margin-top:8px"></div>
+  </div>
+</main>
+
+<div class="nav">
+  <button onclick="showTab('home')">Home</button>
+  <button onclick="showTab('workouts')">Workouts</button>
+  <button onclick="showTab('nutrition')">Meals</button>
+  <button onclick="showTab('tracking')">Tracking</button>
+</div>
+
+<script>
+// Countdown
+function updateCountdown(){
+  const holiday = new Date("October 25, 2025 00:00:00").getTime();
+  const now = Date.now(), d = holiday - now;
+  if(d < 0){ document.getElementById("countdown").textContent = "Holiday time! 🏝"; return; }
+  const days = Math.floor(d / 86400000);
+  document.getElementById("countdown").textContent = days + " days until holiday – stay on track!";
+}
+updateCountdown(); setInterval(updateCountdown, 3600000);
+
+// Tabs
+function showTab(id){
+  document.querySelectorAll('#app > div').forEach(el => el.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+// Data
+const workouts = [
+  { name:"Full Body Strength", exercises:["Barbell Squat","Incline Bench Press","Dumbbell Row","Overhead Press","Bicep Curl","Tricep Extension"] },
+  { name:"Upper Body", exercises:["Incline Bench Press","Overhead Press","Dumbbell Row","Bicep Curl","Tricep Extension"] },
+  { name:"Lower Body", exercises:["Barbell Squat","Romanian Deadlift","Lunge","Calf Raise"] }
+];
+const meals = {
+  breakfast:[
+    "150g Greek yogurt","50g oats","60g vegan protein (Bulk Powders)",
+    "6g creatine","100g cherry juice","100g berries","25g peanut butter"
+  ],
+  lunch:["Chicken–rice–veg base (portions scale for bulk/cut)"],
+  snack:["150g Greek yogurt","100g berries","30g peanuts","50g smooth peanut butter","15g honey"],
+  dinner:["Chicken–rice–veg base variation"]
+};
+
+// Render Today
+document.getElementById("today-workout").innerHTML =
+  "<h3>Today's Workout</h3><ul>" + workouts[0].exercises.map(e=>`<li>${e}</li>`).join("") + "</ul>";
+document.getElementById("today-meals").innerHTML =
+  "<h3>Today's Meals</h3><ul>"
+  + meals.breakfast.map(m=>`<li>${m}</li>`).join("")
+  + meals.lunch.map(m=>`<li>${m}</li>`).join("")
+  + meals.snack.map(m=>`<li>${m}</li>`).join("")
+  + meals.dinner.map(m=>`<li>${m}</li>`).join("")
+  + "</ul>";
+
+// Meals Tab
+document.getElementById("meal-plan").innerHTML =
+  "<h3>Breakfast</h3><ul>"+meals.breakfast.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Lunch</h3><ul>"+meals.lunch.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Snack</h3><ul>"+meals.snack.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Dinner</h3><ul>"+meals.dinner.map(m=>`<li>${m}</li>`).join("")+"</ul>";
+
+// Weight tracking
+let weightHistory = JSON.parse(localStorage.getItem("weightHistory")||"[]");
+function renderWeightHistory(){
+  const html = "<ul>"+weightHistory.map(x=>`<li>${x.date}: ${x.weight} kg</li>`).join("")+"</ul>";
+  document.getElementById("weight-history").innerHTML = html;
+}
+document.getElementById("save-weight").addEventListener("click", ()=>{
+  const v = parseFloat(document.getElementById("weight-input").value);
+  if(!isNaN(v)){
+    weightHistory.push({date: new Date().toLocaleDateString(), weight: v});
+    localStorage.setItem("weightHistory", JSON.stringify(weightHistory));
+    renderWeightHistory();
+  }
+});
+renderWeightHistory();
+</script>
+</body>
+</html>
