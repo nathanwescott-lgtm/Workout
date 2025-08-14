@@ -3,75 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Holiday Muscle Builder — Coach App</title>
+<title>Holiday Coach — Pro Edition</title>
 <style>
-  :root {
-    --bg: #0a0f15;
-    --card: #111824;
-    --text: #e9eef6;
-    --muted: #9fb0c9;
-    --accent: #43a3ff;
-    --accent-2: #8b5cf6;
-    --success: #35d07f;
-    --warn: #ffb020;
-    --danger: #ff6b6b;
-    --border: #1b2432;
-    --chip: #0f1621;
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-  header { position: sticky; top:0; z-index:3; background: linear-gradient(180deg, rgba(10,15,21,.95), rgba(10,15,21,.8), rgba(10,15,21,0)); border-bottom:1px solid var(--border); }
-  .wrap { max-width: 1100px; margin:0 auto; padding: 14px 16px; }
-  h1 { margin:0; font-size: 1.25rem; }
-  .sub { color:var(--muted); font-size:.95rem; margin-top:4px; }
-  .tabs { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-  .tab { padding:8px 12px; border:1px solid var(--border); background:var(--chip); border-radius:10px; cursor:pointer; }
-  .tab.active { background: var(--accent); color:#04131f; font-weight:700; border-color: transparent; }
-  main .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; margin:12px 0; }
-  .grid { display:grid; gap:14px; }
-  @media (min-width: 980px){ .grid.two { grid-template-columns: 1.1fr .9fr; } }
-  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-  .pill { padding:5px 10px; border:1px solid var(--border); border-radius:999px; background:var(--chip); }
-  .btn { background:var(--accent); color:#03101e; font-weight:700; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; }
-  .btn.secondary { background:#0f1722; color:var(--text); border:1px solid var(--border); }
-  .btn.ghost { background:transparent; border:1px dashed var(--border); color:var(--muted); }
-  .label { padding:4px 8px; border-radius:8px; border:1px solid var(--border); display:inline-block; font-size:.85rem; color:var(--muted); }
-  .checkline { display:grid; grid-template-columns: 24px 1fr auto; gap:10px; align-items:center; padding:10px; border:1px solid var(--border); border-radius:10px; margin:6px 0; background:#0f1722; }
-  input[type="checkbox"]{ width:20px; height:20px; }
-  .calendar { max-height: 60vh; overflow:auto; border:1px solid var(--border); border-radius:12px; }
-  .dayrow { display:grid; grid-template-columns: 106px 1fr 130px 130px; gap:10px; align-items:center; padding:10px 12px; border-bottom:1px solid var(--border); }
-  .dayrow:nth-child(even){ background:#0f1722; }
-  .dayrow .ok { color: var(--success); }
-  textarea.note { width:100%; min-height:90px; border-radius:10px; border:1px solid var(--border); background:#0b1220; color:var(--text); padding:10px; }
-  .list { display:grid; gap:8px; }
-  .list .item { display:flex; justify-content:space-between; padding:8px 10px; background:#0f1722; border:1px solid var(--border); border-radius:10px; }
-  .chip { background:#0f1722; border:1px solid var(--border); border-radius:999px; padding:4px 8px; color:var(--muted); }
-  .small { font-size:.9rem; color:var(--muted); }
-  .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.85rem; background:#0b1220; border:1px solid var(--border); border-radius:6px; padding:1px 6px; }
-  .table { width:100%; border-collapse: collapse; }
-  .table th, .table td { border:1px solid var(--border); padding:8px; text-align:left; }
-  .table th { background:#0f1722; }
-  .split { display:grid; gap:10px; grid-template-columns: 1fr 1fr; }
-  @media (max-width: 720px){ .split { grid-template-columns: 1fr; } .dayrow { grid-template-columns: 96px 1fr; } }
-  .right { text-align:right; }
-  .hidden { display:none; }
-  .success { color: var(--success); }
+:root{--bg:#0b0f14;--card:#111824;--text:#e8eef7;--muted:#9eb1c9;--accent:#49a7ff;--success:#36d07f;--warn:#ffb020;--danger:#ff6b6b;--border:#1c2432;--chip:#0f1621}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+header{position:sticky;top:0;z-index:3;background:linear-gradient(180deg,rgba(11,15,20,.95),rgba(11,15,20,.8),rgba(11,15,20,0));border-bottom:1px solid var(--border)}
+.wrap{max-width:1160px;margin:0 auto;padding:14px 16px}
+h1{margin:0;font-size:1.25rem}.sub{color:var(--muted);font-size:.95rem;margin-top:4px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tab{padding:8px 12px;border:1px solid var(--border);background:var(--chip);border-radius:10px;cursor:pointer}.tab.active{background:var(--accent);color:#04121e;font-weight:700;border-color:transparent}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+.grid{display:grid;gap:14px}.two{grid-template-columns:1.1fr .9fr}@media(max-width:980px){.two{grid-template-columns:1fr}}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--chip)}
+.btn{background:var(--accent);color:#03101e;font-weight:700;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}.btn.secondary{background:#0f1722;color:var(--text);border:1px solid var(--border)}.btn.ghost{background:transparent;border:1px dashed var(--border);color:var(--muted)}
+.small{font-size:.9rem;color:var(--muted)}.label{padding:4px 8px;border-radius:8px;border:1px solid var(--border);display:inline-block;font-size:.85rem;color:var(--muted)}
+.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid var(--border);padding:8px;text-align:left}.table th{background:#0f1722}
+.checkline{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--border);border-radius:10px;margin:6px 0;background:#0f1722}
+input[type=checkbox]{width:20px;height:20px}
+.calendar{max-height:60vh;overflow:auto;border:1px solid var(--border);border-radius:12px}
+.dayrow{display:grid;grid-template-columns:106px 1fr 130px 130px;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border)}.dayrow:nth-child(even){background:#0f1722}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0b1220;border:1px solid var(--border);border-radius:6px;padding:1px 6px}
+.timer{display:flex;gap:8px;align-items:center}
+.timer .time{min-width:68px;text-align:center;font-weight:800}
+.exrow{border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0;background:#0f1722}
+.gif{max-width:100%;border-radius:10px;border:1px solid var(--border);background:#0b1220}
+.progress{height:10px;background:#0e1420;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--success);width:0%}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>Holiday Muscle Builder — Coach App</h1>
-    <div class="sub">From today to your trip on <strong>Oct 25</strong>: lift 4×, spin 2×, hit meals, and level up. No fish, no beef.</div>
-    <div class="tabs" id="tabs">
-      <div class="tab active" data-tab="today">Today</div>
-      <div class="tab" data-tab="calendar">Calendar</div>
-      <div class="tab" data-tab="shopping">Shopping</div>
-      <div class="tab" data-tab="prep">Prep</div>
-      <div class="tab" data-tab="progression">Progression</div>
-      <div class="tab" data-tab="chat">Chat</div>
-      <div class="tab" data-tab="settings">Settings</div>
-    </div>
+<header class="wrap">
+  <h1>Holiday Coach — Pro Edition</h1>
+  <div class="sub">Spin Mon/Wed/Sat. Bulk→Cut auto‑switch, chicken‑rice‑veg base, beer is “free”. Choose any workout any day. Timers + GIFs + last weights.</div>
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-tab="today">Today</div>
+    <div class="tab" data-tab="calendar">Calendar</div>
+    <div class="tab" data-tab="shopping">Shopping</div>
+    <div class="tab" data-tab="prep">Prep</div>
+    <div class="tab" data-tab="progression">Progression</div>
+    <div class="tab" data-tab="weight">Weight</div>
+    <div class="tab" data-tab="chat">Chat</div>
+    <div class="tab" data-tab="settings">Settings</div>
   </div>
 </header>
 
@@ -79,553 +51,547 @@
   <!-- TODAY -->
   <section class="card" id="tab-today">
     <div class="row">
-      <span class="pill" id="todayLabel">Today</span>
-      <span class="pill" id="dayTypePill"></span>
-      <span class="pill" id="weekPill"></span>
-      <span class="pill">Target: ~2600–2700 kcal • ≥160 g protein</span>
+      <span class="pill" id="phasePill">Phase</span>
+      <label class="pill">Today: 
+        <select id="todayType">
+          <option>Spin</option><option>Push</option><option>Pull</option><option>Legs</option><option>Upper</option><option>Rest</option>
+        </select>
+      </label>
+      <span class="pill" id="kcalPill">Target</span>
+      <span class="pill" id="beerPill">Beer: 0/4</span>
       <span class="pill" id="pointsPill">0 pts</span>
     </div>
 
     <div class="grid two">
       <div>
-        <h3>Today's Checklist</h3>
-        <div id="todayChecklist"></div>
+        <h3>Workout Builder</h3>
+        <div class="small">Pick exercises, then log each set. Rest timer will guide you.</div>
+        <div class="row" style="margin:6px 0;">
+          <label class="pill">Template: 
+            <select id="templateSel">
+              <option value="auto">Auto (based on type)</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+          <button class="btn" id="addExercise">Add Exercise</button>
+        </div>
+        <div id="exerciseList"></div>
+      </div>
+      <div>
+        <h3>Meals (Chicken–Rice–Veg base)</h3>
+        <div id="mealsBox" class="card small"></div>
         <h3 style="margin-top:10px;">Notes</h3>
-        <textarea id="notes" class="note" placeholder="How did today go? Any tweaks?"></textarea>
+        <textarea id="notes" style="width:100%;min-height:90px" class="card small" placeholder="How did today go?"></textarea>
         <div class="row" style="margin-top:8px;">
           <button class="btn" id="saveToday">Save Today</button>
           <button class="btn secondary" id="clearToday">Clear Today</button>
         </div>
       </div>
-      <div>
-        <h3>Stats</h3>
-        <div class="split">
-          <div class="card small">
-            <div>Total points</div>
-            <div style="font-size:1.6rem;font-weight:800" id="pointsTotal">0</div>
-            <div>Badges: <span id="badgesCount">0</span> • <span id="latestBadge">—</span></div>
-          </div>
-          <div class="card small">
-            <div>Streak</div>
-            <div style="font-size:1.6rem;font-weight:800" id="streakDays">0 days</div>
-            <div class="small">Complete workout + meals to extend</div>
-          </div>
-        </div>
-        <h3 style="margin-top:10px;">This Week</h3>
-        <div id="thisWeek"></div>
-      </div>
     </div>
   </section>
 
   <!-- CALENDAR -->
-  <section class="card hidden" id="tab-calendar">
+  <section class="card" id="tab-calendar" style="display:none">
     <h3>Full Plan</h3>
-    <div class="small" style="margin-bottom:8px;">Tap a row to toggle workout/meals. Left half toggles workout; right half toggles meals.</div>
+    <div class="small">Tap a row to set the day’s type. Left badge shows completion (workout/meals).</div>
     <div class="calendar" id="calendar"></div>
-    <div class="row" style="margin-top:10px; justify-content: space-between;">
-      <button class="btn ghost" id="exportData">Export Data</button>
-      <button class="btn ghost" id="importData">Import Data</button>
-      <input type="file" id="importFile" accept="application/json" class="hidden">
-    </div>
   </section>
 
   <!-- SHOPPING -->
-  <section class="card hidden" id="tab-shopping">
+  <section class="card" id="tab-shopping" style="display:none">
     <div class="row"><h3 style="margin:0">Shopping List (Auto, Weekly)</h3><span class="pill" id="shopWeek"></span></div>
-    <div class="small">Auto-builds each <strong>Sunday</strong> for Monday–Sunday. You can tweak quantities or add custom items.</div>
-    <div class="row" style="margin-top:8px;">
-      <button class="btn" id="regenList">Rebuild for this week</button>
-      <button class="btn secondary" id="clearList">Clear</button>
-    </div>
-    <table class="table" id="shoppingTable">
-      <thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th><th class="right">✓</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <div class="row" style="margin-top:8px;">
-      <button class="btn ghost" id="addRow">Add Item</button>
-      <button class="btn ghost" id="exportShop">Export CSV</button>
-    </div>
+    <div class="small">Quantities scale with phase + weight trend. Base: chicken–rice–veg; extras optional.</div>
+    <table class="table" id="shoppingTable"><thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead><tbody></tbody></table>
+    <div class="row" style="margin-top:8px"><button class="btn" id="exportShop">Export CSV</button></div>
   </section>
 
   <!-- PREP -->
-  <section class="card hidden" id="tab-prep">
-    <h3>Sunday Prep (90 minutes, low-cleanup)</h3>
-    <div class="small">All <strong>temperatures in °C</strong>. Use parchment/foil on trays for easy cleanup.</div>
-    <div id="prepText" class="list" style="margin-top:8px;"></div>
+  <section class="card" id="tab-prep" style="display:none">
+    <h3>Sunday Prep (90 minutes, low cleanup)</h3>
+    <div class="small">All temps in °C.</div>
+    <ul id="prepList"></ul>
   </section>
 
   <!-- PROGRESSION -->
-  <section class="card hidden" id="tab-progression">
-    <h3>Progression Log</h3>
-    <div class="small">Track weights/reps. The app suggests next targets when you hit the top of your rep range.</div>
-    <div class="row" style="margin-bottom:6px;">
-      <label class="pill">Day: <select id="progDaySel">
-        <option>Push</option><option>Pull</option><option>Legs</option><option>Upper</option>
-      </select></label>
-      <label class="pill">Date: <input type="date" id="progDate"></label>
-      <button class="btn" id="addSession">Add Session</button>
+  <section class="card" id="tab-progression" style="display:none">
+    <h3>Progression History</h3>
+    <div class="small">Tap any exercise to view your recent sets and bests. Suggestions auto-update.</div>
+    <div id="history"></div>
+  </section>
+
+  <!-- WEIGHT -->
+  <section class="card" id="tab-weight" style="display:none">
+    <h3>Weight Tracker</h3>
+    <div class="row">
+      <label class="pill">Date: <input type="date" id="wtDate"></label>
+      <label class="pill">Weight (kg): <input type="number" id="wtVal" step="0.01" style="width:120px"></label>
+      <button class="btn" id="wtAdd">Add</button>
+      <button class="btn secondary" id="wtExport">Export CSV</button>
     </div>
-    <div id="sessions"></div>
+    <div class="small" style="margin-top:6px">Tip: weigh after waking, post‑toilet, before eating.</div>
+    <table class="table" id="wtTable" style="margin-top:10px"><thead><tr><th>Date</th><th>Weight (kg)</th></tr></thead><tbody></tbody></table>
+    <div class="card small" style="margin-top:10px">
+      <div>7‑day avg trend: <b id="trendText">—</b></div>
+      <div class="progress" style="margin-top:6px"><span id="trendBar"></span></div>
+      <div class="small">Auto‑adjust is <span id="autoStatus">On</span>. Last adjust: <span id="lastAdjust">—</span></div>
+    </div>
   </section>
 
   <!-- CHAT -->
-  <section class="card hidden" id="tab-chat">
+  <section class="card" id="tab-chat" style="display:none">
     <h3>Chat</h3>
-    <div class="small">Use this space to talk with your coach (me). It keeps everything on-device. You can export and paste back into our ChatGPT thread anytime to sync changes.</div>
-    <div id="chatBox" style="max-height:50vh; overflow:auto; border:1px solid var(--border); border-radius:10px; padding:10px; background:#0f1722;"></div>
-    <div class="row" style="margin-top:8px;">
-      <input id="chatInput" placeholder="Type a message…" style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--border); background:#0b1220; color:var(--text)">
+    <div id="chatBox" style="max-height:50vh;overflow:auto;border:1px solid var(--border);border-radius:10px;padding:10px;background:#0f1722"></div>
+    <div class="row" style="margin-top:8px">
+      <input id="chatInput" placeholder="Type a message…" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0b1220;color:var(--text)">
       <button class="btn" id="sendMsg">Send</button>
       <button class="btn secondary" id="exportChat">Export Chat</button>
-      <button class="btn ghost" id="clearChat">Clear</button>
     </div>
-    <div class="small" style="margin-top:6px;">Tip: try commands like <span class="kbd">/swap dinner tofu</span>, <span class="kbd">/add spin Tue</span>, <span class="kbd">/macro bump +200</span>. The app will apply simple rules instantly.</div>
+    <div class="small" style="margin-top:6px">Commands: <span class="kbd">/add beer</span> (log a pint), <span class="kbd">/set rest 90</span>, <span class="kbd">/swap type Push</span>.</div>
   </section>
 
   <!-- SETTINGS -->
-  <section class="card hidden" id="tab-settings">
+  <section class="card" id="tab-settings" style="display:none">
     <h3>Settings</h3>
-    <div class="list">
-      <div class="item"><span>Points per workout</span><span><input type="number" id="ptsWorkout" min="0" value="10" style="width:80px;"></span></div>
-      <div class="item"><span>Points for meals</span><span><input type="number" id="ptsMeals" min="0" value="5" style="width:80px;"></span></div>
-      <div class="item"><span>Holiday date</span><span><input type="date" id="holidayDate"></span></div>
-      <div class="item"><span>Reset all data</span><span><button class="btn danger" id="resetAll" style="background:var(--danger); color:white;">Reset</button></span></div>
-    </div>
+    <table class="table small">
+      <tr><th>Holiday</th><td><input type="date" id="holidayDate"></td></tr>
+      <tr><th>Cut starts</th><td><input type="date" id="cutDate"></td></tr>
+      <tr><th>Base kcal (Bulk)</th><td><input type="number" id="bulkBase" value="3200" style="width:120px"></td></tr>
+      <tr><th>Base kcal (Cut)</th><td><input type="number" id="cutBase" value="2700" style="width:120px"></td></tr>
+      <tr><th>Auto‑adjust</th><td><label class="pill"><input type="checkbox" id="autoAdj" checked> Enabled</label></td></tr>
+      <tr><th>Beer per week</th><td><input type="number" id="beerPerWeek" value="4" style="width:80px"></td></tr>
+      <tr><th>Default rest (compounds)</th><td><input type="number" id="restComp" value="90" style="width:80px"> s</td></tr>
+      <tr><th>Default rest (accessory)</th><td><input type="number" id="restAcc" value="60" style="width:80px"> s</td></tr>
+    </table>
   </section>
 </main>
 
 <script>
 (function(){
-  // ---------- CONSTANTS / STATE ----------
-  const KEY = "hmb-coach-app-v1";
-  const today = new Date();
-  const defaultHoliday = new Date(2025, 9, 25); // Oct 25, 2025
-  const weeklyPlan = ["Push","Pull","Spin","Legs","Rest","Upper","Spin"]; // Mon..Sun
-
-  const mealMap = {
-    "Push": { lunch: "Chicken Rice Bowl", dinner: "Chicken Stir-Fry", prebed: "Greek Yogurt + Honey" },
-    "Pull": { lunch: "Turkey Mince Wraps", dinner: "Egg & Potato Bake", prebed: "Whey + Almond Milk" },
-    "Spin": { lunch: "Veggie Protein Bowl", dinner: "Chicken Rice Bowl", prebed: "Greek Yogurt + Honey" },
-    "Legs": { lunch: "Chicken Stir-Fry", dinner: "Tofu & Rice Bowl", prebed: "Whey + Almond Milk" },
-    "Rest": { lunch: "Turkey Mince Wraps", dinner: "Chicken Stir-Fry", prebed: "Greek Yogurt + Honey" },
-    "Upper": { lunch: "Chicken Rice Bowl", dinner: "Egg & Potato Bake", prebed: "Whey + Almond Milk" }
-  };
-
-  const prepLines = [
-    "Preheat oven to 220°C (fan 200°C). Line two sheet pans with parchment for low cleanup.",
-    "Start rice: ~600 g dry (≈1.8 kg cooked). Rice cooker or pot (1:1.8), simmer 15–18 min, rest 10.",
-    "Cube 1.4 kg potatoes (2–3 cm). Toss with 2–3 tbsp olive oil, salt, pepper.",
-    "Season 1.5–1.8 kg chicken breasts with 1–2 tbsp oil, salt, pepper, garlic, paprika.",
-    "Roast potatoes: 220°C for 25–30 min, shake at 15.",
-    "Roast chicken: 220°C for 18–22 min to 74°C internal; rest 5, then slice.",
-    "Brown 900 g turkey mince in skillet 8–10 min on medium-high; drain if needed.",
-    "Lower oven to 200°C (fan 180°C). Bake 400 g firm tofu 20–25 min (turn once).",
-    "Hard‑boil 6–8 eggs: rolling boil, 9–10 min, ice bath 5, peel.",
-    "Quinoa: 200 g dry + 400 ml water; simmer 12–15 min; rest 5.",
-    "Chop ~1 kg stir‑fry veg (peppers, onion, broccoli). Store raw for fast 6–8 min sautés.",
-    "Portion: chicken 150 g; turkey 150 g; tofu 200 g; rice 150 g; potatoes 200 g; quinoa 150 g.",
-    "Cool to room temp within 60–90 min, then refrigerate at 0–4°C. Reheat to 74°C."
-  ];
-
-  // ---------- STORAGE ----------
-  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  const KEY="hc-pro-v1";
+  function load(){ try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}} }
   function save(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
-  function getSetting(name, fallback){
-    const s = load(); s.settings = s.settings || {};
-    return (name in s.settings) ? s.settings[name] : fallback;
-  }
-  function setSetting(name, value){
-    const s = load(); s.settings = s.settings || {}; s.settings[name] = value; save(s);
-  }
+  function iso(d){ return d.toISOString().slice(0,10); }
+  const today = new Date();
 
-  function dateStr(d){ return d.toISOString().slice(0,10); }
-  function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  // ---------- Settings & Phase ----------
+  const defaultHoliday = new Date(2025,9,25);
+  const defaultCut = new Date(2025,8,15);
+  const defaults = {holiday: iso(defaultHoliday), cut: iso(defaultCut), bulkBase:3200, cutBase:2700, auto:true, beer:4, restC:90, restA:60};
+  if(!load().settings){ const s=load(); s.settings=defaults; save(s); }
 
-  function getHoliday(){ const v = getSetting("holiday", null); return v ? new Date(v) : defaultHoliday; }
+  function getSetting(k){ return (load().settings||defaults)[k]; }
+  function setSetting(k,v){ const s=load(); s.settings=s.settings||defaults; s.settings[k]=v; save(s); }
 
-  function getAllDays(){
-    const start = startOfDay(today);
-    const end = startOfDay(getHoliday());
-    const out = [];
-    const d = new Date(start);
-    while(d <= end){
-      const mondayIndex = (d.getDay() + 6) % 7; // Mon=0..Sun=6
-      const type = weeklyPlan[mondayIndex];
-      out.push({ date: new Date(d), type });
-      d.setDate(d.getDate()+1);
-    }
-    return out;
-  }
+  function holiday(){ return new Date(getSetting("holiday")); }
+  function cutDate(){ return new Date(getSetting("cut")); }
+  function phaseFor(d){ return d < cutDate() ? "Bulk" : "Cut"; }
+  function baseKcal(phase){ return phase==="Bulk" ? getSetting("bulkBase") : getSetting("cutBase"); }
 
-  function dayState(iso){
-    const s = load(); s.days = s.days || {};
-    if(!s.days[iso]) s.days[iso] = { workout:false, meals:false, notes:""};
-    save(s); return s.days[iso];
-  }
-  function setDay(iso, patch){
-    const s = load(); s.days = s.days || {}; s.days[iso] = Object.assign(dayState(iso), patch); save(s);
-  }
+  // ---------- Beer tracker ----------
+  function weekKey(d){ const x=new Date(d.getFullYear(),d.getMonth(),d.getDate()); const dow=(x.getDay()+6)%7; x.setDate(x.getDate()-dow); return "w-"+iso(x); }
+  function beersThisWeek(){ const wk=weekKey(today); const s=load(); s.beer=s.beer||{}; save(s); return s.beer[wk]||0; }
+  function addBeer(n=1){ const wk=weekKey(today); const s=load(); s.beer=s.beer||{}; s.beer[wk]=(s.beer[wk]||0)+n; save(s); renderTodayTop(); }
 
-  // Points / badges / streak
-  function pointsFor(iso){
-    const s = load(); const ptsW = getSetting("ptsWorkout", 10); const ptsM = getSetting("ptsMeals", 5);
-    const d = dayState(iso);
-    return (d.workout ? ptsW : 0) + (d.meals ? ptsM : 0);
+  // ---------- Schedule & Day Types ----------
+  // Default schedule: Spin Mon/Wed/Sat; Push Tue; Pull Thu; Legs Fri; Upper Sun
+  function defaultTypeFor(d){
+    const idx=(d.getDay()+6)%7;
+    return ["Spin","Push","Spin","Pull","Legs","Spin","Upper"][idx];
   }
-  function pointsTotal(){
-    const days = getAllDays().map(d => dateStr(d.date));
-    return days.reduce((acc, iso) => acc + pointsFor(iso), 0);
+  function dayType(dateIso){
+    const s=load(); s.types=s.types||{}; save(s);
+    return s.types[dateIso] || defaultTypeFor(new Date(dateIso));
   }
-  function streak(){
-    const days = getAllDays().map(d => dateStr(d.date));
-    const idx = days.indexOf(dateStr(today));
-    let s=0;
-    for(let i=idx;i>=0;i--){
-      const d = dayState(days[i]);
-      if(d.workout && d.meals) s++; else break;
-    }
-    return s;
-  }
-  function badgesFrom(points){
-    const count = Math.floor(points/100);
-    return {count, latest: count>0 ? ("🏅 Level " + count) : "—"};
-  }
+  function setDayType(dateIso, t){ const s=load(); s.types=s.types||{}; s.types[dateIso]=t; save(s); }
 
-  // ---------- TODAY ----------
-  function renderToday(){
-    const dstr = dateStr(today);
-    const mondayIndex = (today.getDay() + 6) % 7;
-    const type = weeklyPlan[mondayIndex];
-    document.getElementById("dayTypePill").textContent = type;
-    const start = startOfDay(today);
-    const weekNum = Math.floor((start - startOfDay(new Date()))/(1000*60*60*24*7)) + 1; // relative from today
-    document.getElementById("weekPill").textContent = "Week " + 1; // current week index from start is always 1 for UX simplicity
-
-    const meals = mealMap[type] || {lunch:"—", dinner:"—", prebed:"—"};
-    const st = dayState(dstr);
-    const cont = document.getElementById("todayChecklist"); cont.innerHTML = "";
-
-    const blocks = [
-      { id:"workout", label: (type==="Spin" ? "Spin class (45–60 min, moderate)" : "Lift session: " + type), done: st.workout, tag:"+Pts"},
-      { id:"meals", label: "Lunch: " + meals.lunch, done: st.meals, tag:"+Pts"},
-      { id:"meals", label: "Dinner: " + meals.dinner, done: st.meals, tag:"+Pts"},
-      { id:"meals", label: "Pre‑bed: " + meals.prebed, done: st.meals, tag:"+Pts"}
-    ];
-    blocks.forEach(b => {
-      const line = document.createElement("div"); line.className = "checkline";
-      const cb = document.createElement("input"); cb.type="checkbox"; cb.checked = b.id==="workout" ? st.workout : st.meals;
-      cb.addEventListener("change", ()=>{
-        if(b.id==="workout") setDay(dstr, {workout: cb.checked});
-        else setDay(dstr, {meals: cb.checked});
-        updateStats(); renderCalendar(); renderThisWeek();
-      });
-      const label = document.createElement("div"); label.textContent = b.label;
-      const tag = document.createElement("span"); tag.className="label"; tag.textContent = (b.id==="workout" ? ("+"+getSetting("ptsWorkout",10)+" pts") : ("+"+getSetting("ptsMeals",5)+" pts"));
-      line.appendChild(cb); line.appendChild(label); line.appendChild(tag);
-      cont.appendChild(line);
-    });
-
-    document.getElementById("notes").value = st.notes || "";
-    document.getElementById("saveToday").onclick = ()=>{ setDay(dstr, {notes: document.getElementById("notes").value}); };
-    document.getElementById("clearToday").onclick = ()=>{ setDay(dstr, {workout:false, meals:false, notes:""}); renderToday(); updateStats(); renderCalendar(); renderThisWeek(); };
-
-    renderThisWeek();
-  }
-
-  function renderThisWeek(){
-    const days = getAllDays();
-    const todayIso = dateStr(today);
-    const idx = days.findIndex(d => dateStr(d.date)===todayIso);
-    const startIdx = Math.max(0, idx - ((days[idx].date.getDay()+6)%7)); // beginning of this week (Mon)
-    const endIdx = Math.min(days.length-1, startIdx+6);
-    const frag = document.createDocumentFragment();
-    for(let i=startIdx;i<=endIdx;i++){
-      const d = days[i]; const iso = dateStr(d.date);
-      const row = document.createElement("div"); row.className="row";
-      row.innerHTML = `<span class="label">${iso}</span><span class="label">${d.type}</span>`;
-      const t = document.createElement("span");
-      const w = dayState(iso).workout, m = dayState(iso).meals;
-      t.className = "chip"; t.textContent = (w&&m) ? "✓✓ both" : (w||m ? "✓ partial" : "—");
-      row.appendChild(t);
-      frag.appendChild(row);
-    }
-    const box = document.getElementById("thisWeek"); box.innerHTML=""; box.appendChild(frag);
-  }
-
-  // ---------- CALENDAR ----------
-  function renderCalendar(){
-    const cal = document.getElementById("calendar"); cal.innerHTML="";
-    const days = getAllDays();
-    days.forEach((d, idx)=>{
-      const iso = dateStr(d.date); const st = dayState(iso); const meals = mealMap[d.type] || {lunch:"—", dinner:"—"};
-      const row = document.createElement("div"); row.className="dayrow";
-      const col1 = document.createElement("div"); col1.innerHTML = `<div>${iso}</div><div class="small">Week ${Math.floor(idx/7)+1}</div>`;
-      const col2 = document.createElement("div"); col2.innerHTML = `<div><strong>${d.type}</strong></div><div class="small">${d.type==="Spin"?"Spin 45–60 min":"Lift at home"}</div>`;
-      const col3 = document.createElement("div"); col3.innerHTML = `<div class="label">${meals.lunch}</div>`;
-      const col4 = document.createElement("div"); col4.innerHTML = `<div class="label">${meals.dinner}</div>`;
-      row.appendChild(col1); row.appendChild(col2); row.appendChild(col3); row.appendChild(col4);
-      if(st.workout && st.meals) row.style.outline = "2px solid var(--success)";
-      else if(st.workout || st.meals) row.style.outline = "2px dashed var(--warn)";
-      else row.style.outline = "2px dashed var(--border)";
-      row.addEventListener("click", (ev)=>{
-        const rect = row.getBoundingClientRect();
-        const toggleMeals = (ev.clientX - rect.left) > rect.width/2;
-        if(toggleMeals) setDay(iso, {meals: !st.meals}); else setDay(iso, {workout: !st.workout});
-        renderCalendar(); updateStats(); renderThisWeek();
-      });
-      cal.appendChild(row);
-    });
-  }
-
-  // ---------- SHOPPING ----------
-  function weekStart(d){
-    const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-    const day = (x.getDay()+6)%7; // Mon=0
-    x.setDate(x.getDate() - day); return x;
-  }
-  function weekEnd(d){
-    const ws = weekStart(d); const e = new Date(ws); e.setDate(e.getDate()+6); return e;
-  }
-  function baseShopping(){
-    return [
-      ["Protein","Chicken breast","1.5–1.8 kg","Portion 150 g","0"],
-      ["Protein","Turkey mince","900 g","Season & brown","0"],
-      ["Protein","Greek yogurt (low‑fat, high‑protein)","~3 kg","Breakfast + snacks + pre‑bed","0"],
-      ["Protein","Vegan protein powder","~420 g","60 g/day","0"],
-      ["Protein","Eggs (whole)","24","Plus 1.5 L liquid egg whites (opt.)","0"],
-      ["Protein","Tofu (firm)","400 g","Bake 200°C 20–25 min","0"],
-      ["Carbs","Oats","~700 g","Pre‑bag 50 g/day","0"],
-      ["Carbs","Rice (dry)","~600 g","≈1.8 kg cooked","0"],
-      ["Carbs","Potatoes","~1.4 kg","Roast 220°C 25–30 min","0"],
-      ["Carbs","Wraps (large)","4","Turkey wraps","0"],
-      ["Carbs","Quinoa (dry)","~200 g","Veg bowls","0"],
-      ["Carbs","Cherry juice","700 ml","Breakfast","0"],
-      ["Carbs","Honey","~250 g","Snacks + pre‑bed","0"],
-      ["Fats","Peanut butter","~525 g","Breakfast + snack","0"],
-      ["Fats","Peanuts","~210 g","Snack","0"],
-      ["Fats","Olive oil","~150 ml","Cooking/roasting","0"],
-      ["Fats","Tahini","~70 g","Veg bowl dressing","0"],
-      ["Fats","Sesame oil","~30 ml","Stir‑fry","0"],
-      ["Fruit & Veg","Berries (fresh/frozen)","~1.4 kg","Breakfast + snack","0"],
-      ["Fruit & Veg","Spinach","~300 g","Egg bake + bowls","0"],
-      ["Fruit & Veg","Broccoli","~300 g","Stir‑fries","0"],
-      ["Fruit & Veg","Mixed stir‑fry veg","~1.0 kg","Peppers/onion etc.","0"],
-      ["Fruit & Veg","Tomato, cucumber","~700 g","Bowls & wraps","0"]
-    ];
-  }
-  function loadShop(){
-    const s = load(); s.shop = s.shop || {}; const ws = weekStart(today); const key = "w-"+dateStr(ws);
-    if(!s.shop[key]) s.shop[key] = baseShopping();
-    save(s); return {key, rows: s.shop[key]};
-  }
-  function saveShop(key, rows){
-    const s = load(); s.shop = s.shop || {}; s.shop[key] = rows; save(s);
-  }
-  function renderShop(){
-    const ws = weekStart(today), we = weekEnd(today);
-    document.getElementById("shopWeek").textContent = dateStr(ws) + " → " + dateStr(we);
-    const {key, rows} = loadShop();
-    const tb = document.querySelector("#shoppingTable tbody"); tb.innerHTML="";
-    rows.forEach((r, i)=>{
-      const tr = document.createElement("tr");
-      for(let c=0;c<4;c++){
-        const td = document.createElement("td");
-        const inp = document.createElement("input");
-        inp.value = r[c]; inp.style.width = (c===0?120:(c===2?120:220))+"px";
-        inp.onchange = ()=>{ r[c]=inp.value; saveShop(key, rows); };
-        td.appendChild(inp); tr.appendChild(td);
-      }
-      const td5 = document.createElement("td"); td5.className="right";
-      const cb = document.createElement("input"); cb.type="checkbox"; cb.checked = r[4]==="1";
-      cb.onchange = ()=>{ r[4]=cb.checked?"1":"0"; saveShop(key, rows); };
-      td5.appendChild(cb); tr.appendChild(td5);
-      tb.appendChild(tr);
-    });
-    document.getElementById("regenList").onclick = ()=>{ saveShop(key, baseShopping()); renderShop(); };
-    document.getElementById("clearList").onclick = ()=>{ saveShop(key, []); renderShop(); };
-    document.getElementById("addRow").onclick = ()=>{ rows.push(["","","","", "0"]); saveShop(key, rows); renderShop(); };
-    document.getElementById("exportShop").onclick = ()=>{
-      const header = ["Category","Item","Qty","Notes","Checked"];
-      const csv = [header.join(",")].concat(rows.map(r=>r.map(x=>('"' + (x||'').replace(/"/g,'""') + '"')).join(","))).join("\n");
-      downloadText("Shopping-"+dateStr(ws)+".csv", csv);
+  // ---------- Meals (CRV base) ----------
+  function mealsFor(phase){
+    // Chicken–Rice–Veg portions scale by phase
+    const portions = phase==="Bulk"
+      ? {chicken:180, rice:250, veg:200, oil:10}
+      : {chicken:150, rice:180, veg:250, oil:5};
+    return {
+      breakfast: "Your set breakfast smoothie/yogurt + creatine",
+      lunch: `Chicken ${portions.chicken}g + Rice ${portions.rice}g + Veg ${portions.veg}g, +${portions.oil}g oil/sauce`,
+      dinner: `Chicken ${portions.chicken}g + Rice ${portions.rice}g + Veg ${portions.veg}g, +${portions.oil}g oil/sauce`,
+      prebed: "Greek yogurt + honey or whey + milk"
     };
   }
 
-  // ---------- PREP ----------
-  function renderPrep(){
-    const box = document.getElementById("prepText"); box.innerHTML="";
-    prepLines.forEach(line=>{
-      const div = document.createElement("div"); div.className="item"; div.innerHTML = `<span>${line}</span>`;
-      box.appendChild(div);
-    });
-  }
-
-  // ---------- PROGRESSION ----------
-  const defaultExercises = {
-    "Push": ["Barbell Floor Press","Overhead Press","Incline Push-Ups (weighted)","DB Lateral Raise","Overhead DB Triceps Ext"],
-    "Pull": ["Bent-Over Row","1-Arm DB Row","Reverse Fly","Barbell Curl","Hammer Curl"],
-    "Legs": ["Front/Back Squat","Romanian Deadlift","Walking Lunge","Bulgarian Split Squat","Standing Calf Raise"],
-    "Upper": ["Push Press","Pendlay Row","Incline DB Press","DB Pullover","Close-Grip Barbell Press"]
+  // ---------- Exercise Library ----------
+  const LIB = {
+    "Barbell Bench Press": { rest:90, tips:"Feet planted, shoulder blades retracted, touch lower chest, full lockout.", gif:"https://media.tenor.com/0Nn6lQnV4iEAAAAC/bench-press.gif" },
+    "Incline Bench Press (Barbell)": { rest:90, tips:"Bench 30–45°, wrists stacked over elbows, lower to upper chest.", gif:"https://media.tenor.com/2uOaYxH1b2gAAAAC/incline-bench.gif" },
+    "Overhead Press": { rest:90, tips:"Glutes tight, ribs down, press in a straight line, no lean‑back.", gif:"https://media.tenor.com/0jR3k6zJHfEAAAAC/shoulder-press.gif" },
+    "Barbell Row": { rest:90, tips:"Hinge ~45°, pull to mid‑abdomen, keep spine neutral.", gif:"https://media.tenor.com/Jk1D6A2xA1oAAAAC/barbell-row.gif" },
+    "Romanian Deadlift": { rest:120, tips:"Hips back, soft knees, bar close to legs, feel hamstrings stretch.", gif:"https://media.tenor.com/r4rQeXfVg9EAAAAC/romanian-deadlift.gif" },
+    "Front Squat": { rest:120, tips:"Elbows high, sit between hips, keep torso upright.", gif:"https://media.tenor.com/b3Q3p2R0JfAAAAAC/front-squat.gif" },
+    "Back Squat": { rest:120, tips:"Brace hard, hips and knees together, drive up through mid‑foot.", gif:"https://media.tenor.com/F6pHcF2d0EoAAAAC/squat.gif" },
+    "Pull‑Ups / Chin‑Ups": { rest:90, tips:"Full hang, pull chest to bar, control down.", gif:"https://media.tenor.com/Gm6pQy0lNeUAAAAd/pull-up.gif" },
+    "Incline Dumbbell Press": { rest:90, tips:"45° bench, elbows ~45°, touch lightly, squeeze at top.", gif:"https://media.tenor.com/3k3v4wYwXrMAAAAC/incline-dumbbell-press.gif" },
+    "Dumbbell Lateral Raise": { rest:60, tips:"Lead with elbows, small bend, stop at shoulder height.", gif:"https://media.tenor.com/smX3O5Q2SxgAAAAC/lateral-raise.gif" },
+    "Hammer Curl": { rest:60, tips:"Neutral grip, elbows fixed to sides, full range.", gif:"https://media.tenor.com/PYk5n6Ofo3QAAAAC/hammer-curl.gif" },
+    "Skull Crushers": { rest:60, tips:"Elbows in, lower behind head, extend without flaring.", gif:"https://media.tenor.com/7mH9Z8GmDXQAAAAC/skull-crushers.gif" },
+    "Bulgarian Split Squat": { rest:90, tips:"Long stride, torso tall, knee tracks toes, push through front foot.", gif:"https://media.tenor.com/5mG1XQ3N3rQAAAAC/bulgarian-split-squat.gif" }
   };
-  function progKey(dateIso){ return "prog-"+dateIso; }
-  function loadProg(dateIso){
-    const s = load(); s.prog = s.prog || {};
-    if(!s.prog[progKey(dateIso)]){
-      s.prog[progKey(dateIso)] = [];
-      save(s);
-    }
-    return s.prog[progKey(dateIso)];
+
+  const TEMPLATES = {
+    "Push": ["Barbell Bench Press","Incline Bench Press (Barbell)","Overhead Press","Dumbbell Lateral Raise","Skull Crushers"],
+    "Pull": ["Barbell Row","Pull‑Ups / Chin‑Ups","Hammer Curl"],
+    "Legs": ["Back Squat","Romanian Deadlift","Bulgarian Split Squat"],
+    "Upper": ["Incline Bench Press (Barbell)","Barbell Row","Overhead Press","Incline Dumbbell Press","Hammer Curl"]
+  };
+
+  // ---------- Storage helpers ----------
+  function getState(){ return load(); }
+  function ensure(obj, key, init){ if(!obj[key]) obj[key]=init; }
+  function dayKey(d){ return iso(d); }
+  function dayData(d){
+    const s=getState(); ensure(s,"days",{}); const k=dayKey(d); ensure(s.days,k,{type: defaultTypeFor(d), workout:[], notes:"", doneW:false, doneM:false}); save(s); return s.days[k];
   }
-  function saveProg(dateIso, rows){
-    const s = load(); s.prog = s.prog || {}; s.prog[progKey(dateIso)] = rows; save(s);
+  function defaultTypeFor(d){
+    const idx=(d.getDay()+6)%7;
+    return ["Spin","Push","Spin","Pull","Legs","Spin","Upper"][idx];
   }
-  function addSession(){
-    const dateIso = document.getElementById("progDate").value || dateStr(today);
-    const day = document.getElementById("progDaySel").value;
-    const rows = loadProg(dateIso);
-    const exList = defaultExercises[day] || [];
-    exList.forEach(ex=> rows.push({exercise: ex, sets:["","","",""], notes:"", target:"", done:""}));
-    saveProg(dateIso, rows);
-    renderSessions(dateIso);
+
+  // ---------- UI Rendering ----------
+  function el(id){ return document.getElementById(id); }
+
+  function renderTodayTop(){
+    const d = today, dd=dayData(d);
+    const phase = phaseFor(d);
+    el("phasePill").textContent = phase;
+    el("todayType").value = dd.type || defaultTypeFor(d);
+    el("kcalPill").textContent = "Target: " + baseKcal(phase) + " kcal";
+    const beerUsed = beersThisWeek(), beerMax = getSetting("beer");
+    el("beerPill").textContent = `Beer: ${Math.min(beerUsed, beerMax)}/${beerMax}`;
   }
-  function renderSessions(dateIso){
-    const box = document.getElementById("sessions"); box.innerHTML="";
-    const rows = loadProg(dateIso);
-    if(rows.length===0){ box.innerHTML = `<div class="small">No session logged yet for ${dateIso}. Choose day & date, then click <strong>Add Session</strong>.</div>`; return; }
-    rows.forEach((r, idx)=>{
-      const wrap = document.createElement("div"); wrap.className="card";
-      const head = document.createElement("div"); head.className="row";
-      head.innerHTML = `<strong>${r.exercise}</strong>`;
-      wrap.appendChild(head);
-      const table = document.createElement("table"); table.className="table";
-      const thead = document.createElement("thead"); thead.innerHTML = "<tr><th>Set 1</th><th>Set 2</th><th>Set 3</th><th>Set 4</th><th>RIR/Notes</th><th>Target Next</th><th>Done?</th></tr>";
-      const tb = document.createElement("tbody");
-      const tr = document.createElement("tr");
-      for(let s=0;s<4;s++){
-        const td=document.createElement("td"); const inp=document.createElement("input");
-        inp.placeholder="kg x reps"; inp.value = r.sets[s]||""; inp.onchange=()=>{ r.sets[s]=inp.value; saveProg(dateIso, rows); };
-        td.appendChild(inp); tr.appendChild(td);
+
+  function renderMeals(){
+    const m = mealsFor(phaseFor(today));
+    el("mealsBox").innerHTML = `
+      <div><b>Breakfast</b>: ${m.breakfast}</div>
+      <div><b>Lunch</b>: ${m.lunch}</div>
+      <div><b>Dinner</b>: ${m.dinner}</div>
+      <div><b>Pre‑bed</b>: ${m.prebed}</div>
+      <div class="small" style="margin-top:6px">Beer calories are “free”; auto‑adjust handles any slowdown.</div>
+    `;
+  }
+
+  function addExerciseRow(name){
+    const ex = LIB[name] || {rest:90,tips:"",gif:""};
+    const wrap = document.createElement("div"); wrap.className="exrow";
+    wrap.innerHTML = `
+      <div class="row"><strong>${name}</strong> <span class="label">${ex.rest}s rest</span> <button class="btn ghost rem">Remove</button></div>
+      <div class="small">${ex.tips}</div>
+      <img class="gif" src="${ex.gif}" alt="${name} form demo (requires internet)" onerror="this.style.display='none'">
+      <table class="table" style="margin-top:8px">
+        <thead><tr><th>Set</th><th>Weight (kg)</th><th>Reps</th><th>Last</th><th>Target</th><th>Timer</th></tr></thead>
+        <tbody>
+          ${[1,2,3,4].map((i)=>`<tr>
+            <td>${i}</td>
+            <td><input type="number" step="0.5" class="w" style="width:90px"></td>
+            <td><input type="number" step="1" class="r" style="width:70px"></td>
+            <td class="last">—</td>
+            <td class="tgt">—</td>
+            <td><div class="timer"><span class="time">00:${String(ex.rest).padStart(2,'0')}</span><button class="btn secondary start">Start</button><button class="btn ghost reset">Reset</button></div></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>`;
+    // Hook up timer buttons
+    wrap.querySelectorAll(".start").forEach((btn, idx)=>{
+      btn.addEventListener("click",()=>{
+        const row = btn.closest("tr");
+        const timeEl = row.querySelector(".time");
+        let secs = ex.rest;
+        clearInterval(btn._iv);
+        timeEl.textContent = fmt(secs);
+        btn._iv = setInterval(()=>{
+          secs--; timeEl.textContent = fmt(secs);
+          if(secs<=0){ clearInterval(btn._iv); timeEl.textContent="REST DONE"; }
+        },1000);
+      });
+    });
+    wrap.querySelectorAll(".reset").forEach((btn)=>{
+      btn.addEventListener("click",()=>{
+        const row = btn.closest("tr"); const timeEl = row.querySelector(".time"); timeEl.textContent = fmt(ex.rest);
+        clearInterval(btn._iv);
+      });
+    });
+    wrap.querySelector(".rem").addEventListener("click",()=>{ wrap.remove(); saveTodayWorkout(); });
+    el("exerciseList").appendChild(wrap);
+    // Load last & targets
+    populateLasts(name, wrap);
+  }
+
+  function fmt(secs){ const m = Math.floor(secs/60), s=secs%60; return String(m).padStart(2,'0')+":"+String(s).padStart(2,'0'); }
+
+  function populateLasts(name, wrap){
+    const hist = (load().history||{})[name]||[];
+    const last = hist.length ? hist[hist.length-1] : null;
+    wrap.querySelectorAll("tbody tr").forEach((tr,i)=>{
+      const lastCell = tr.querySelector(".last"); const tgtCell=tr.querySelector(".tgt");
+      if(last && last.sets && last.sets[i]){
+        const ls = last.sets[i]; lastCell.textContent = ls.w+"kg × "+ls.r;
+        // Suggest target: +2.5kg if reps≥top end, else +1 rep
+        const reps = Number(ls.r||0);
+        if(reps>=10) tgtCell.textContent = (Number(ls.w)+2.5)+"kg × 6–8";
+        else tgtCell.textContent = ls.w+"kg × "+(reps+1);
+      } else {
+        lastCell.textContent = "—"; tgtCell.textContent="—";
       }
-      const td5=document.createElement("td"); const notes=document.createElement("input"); notes.value=r.notes||""; notes.onchange=()=>{ r.notes=notes.value; saveProg(dateIso, rows); }; td5.appendChild(notes); tr.appendChild(td5);
-      const td6=document.createElement("td"); const target=document.createElement("input"); target.placeholder="e.g., +2 reps"; target.value=r.target||""; target.onchange=()=>{ r.target=target.value; saveProg(dateIso, rows); }; td6.appendChild(target); tr.appendChild(td6);
-      const td7=document.createElement("td"); const done=document.createElement("input"); done.type="checkbox"; done.checked = r.done==="1"; done.onchange=()=>{ r.done=done.checked?"1":""; saveProg(dateIso, rows); }; td7.appendChild(done); tr.appendChild(td7);
-      tb.appendChild(tr);
-      table.appendChild(thead); table.appendChild(tb);
-      wrap.appendChild(table);
-      box.appendChild(wrap);
     });
   }
 
-  // ---------- CHAT ----------
+  function buildTemplate(type){
+    el("exerciseList").innerHTML="";
+    if(!TEMPLATES[type]) return;
+    TEMPLATES[type].forEach(addExerciseRow);
+  }
+
+  function renderToday(){
+    renderTodayTop(); renderMeals();
+    const d = today, dd=dayData(d);
+    // Set selector and template
+    el("todayType").value = dd.type;
+    el("templateSel").value = dd.workout?.length ? "custom" : "auto";
+    if(dd.workout?.length){
+      el("exerciseList").innerHTML="";
+      dd.workout.forEach(ex => addExerciseRow(ex.name));
+      // fill weights/reps
+      const rows = el("exerciseList").querySelectorAll(".exrow");
+      rows.forEach((wrap,i)=>{
+        const sets = dd.workout[i].sets||[];
+        wrap.querySelectorAll("tbody tr").forEach((tr, si)=>{
+          const w=tr.querySelector(".w"); const r=tr.querySelector(".r");
+          if(sets[si]){ w.value = sets[si].w||""; r.value = sets[si].r||""; }
+        });
+      });
+    } else {
+      buildTemplate(dd.type);
+    }
+    el("notes").value = dd.notes||"";
+  }
+
+  function saveTodayWorkout(){
+    const d = today, dd=dayData(d);
+    const rows = el("exerciseList").querySelectorAll(".exrow");
+    dd.workout = Array.from(rows).map(wrap => {
+      const name = wrap.querySelector("strong").textContent;
+      const sets = Array.from(wrap.querySelectorAll("tbody tr")).map(tr => ({ w: tr.querySelector(".w").value, r: tr.querySelector(".r").value }));
+      return {name, sets};
+    });
+    dd.type = el("todayType").value;
+    dd.notes = el("notes").value;
+    const s=getState(); s.days[dayKey(d)] = dd; save(s);
+  }
+
+  function saveToHistory(){
+    const d = today, dd=dayData(d);
+    const s=getState(); s.history = s.history || {};
+    dd.workout.forEach(ex => {
+      s.history[ex.name] = s.history[ex.name] || [];
+      s.history[ex.name].push({ date: iso(d), sets: ex.sets });
+    });
+    save(s);
+  }
+
+  // Buttons
+  el("todayType").addEventListener("change", ()=>{ saveTodayWorkout(); if(el("templateSel").value==="auto"){ buildTemplate(el("todayType").value); } });
+  el("templateSel").addEventListener("change", ()=>{
+    if(el("templateSel").value==="auto"){ buildTemplate(el("todayType").value); }
+  });
+  el("addExercise").addEventListener("click", ()=>{
+    const name = prompt("Exercise name (choose from library or type your own):\n"+Object.keys(LIB).join(", "));
+    if(!name) return;
+    addExerciseRow(name);
+    saveTodayWorkout();
+  });
+  el("saveToday").addEventListener("click", ()=>{ saveTodayWorkout(); saveToHistory(); alert("Saved!"); });
+  el("clearToday").addEventListener("click", ()=>{
+    const d=today; const s=getState(); s.days[s=>{}]; const k=dayKey(d);
+    const dd = dayData(d); dd.workout=[]; dd.notes=""; const st=getState(); st.days[k]=dd; save(st); renderToday();
+  });
+
+  // ---------- Calendar ----------
+  function renderCalendar(){
+    const cal = document.getElementById("calendar"); cal.innerHTML="";
+    const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const end = holiday();
+    const d = new Date(start);
+    while(d<=end){
+      const k = iso(d); const dd = dayData(d);
+      const row = document.createElement("div"); row.className="dayrow";
+      const left = document.createElement("div"); left.innerHTML = `<div>${k}</div><div class="small">${phaseFor(d)}</div>`;
+      const mid = document.createElement("div");
+      const sel = document.createElement("select"); ["Spin","Push","Pull","Legs","Upper","Rest"].forEach(t=>{ const o=document.createElement("option"); o.textContent=t; o.selected = (dd.type===t); sel.appendChild(o); });
+      sel.addEventListener("change", ()=>{ setDayType(k, sel.value); const s=getState(); s.days[k].type=sel.value; save(s); });
+      mid.appendChild(sel);
+      const c3 = document.createElement("div"); c3.innerHTML = `<div class="label">${dd.workout?.length||0} exercises</div>`;
+      const c4 = document.createElement("div"); c4.innerHTML = `<div class="label">${dd.notes?.length? "Has notes":"—"}</div>`;
+      row.appendChild(left); row.appendChild(mid); row.appendChild(c3); row.appendChild(c4);
+      cal.appendChild(row);
+      d.setDate(d.getDate()+1);
+    }
+  }
+
+  // ---------- Shopping & Prep ----------
+  function shoppingBase(phase){
+    const mult = phase==="Bulk"?1.0:0.85; // slight scale down on cut
+    return [
+      ["Protein","Chicken breast", (mult*1.8).toFixed(2)+" kg","Main protein base"],
+      ["Carbs","Rice (dry)", (mult*0.60).toFixed(2)+" kg","≈1.8 kg cooked bulk base"],
+      ["Veg","Mixed veg (broccoli/pepper etc.)", (mult*1.8).toFixed(2)+" kg","Stir‑fry or steam"],
+      ["Fats","Olive oil", (mult*0.15).toFixed(2)+" L","Cooking/sauces"],
+      ["Dairy","Greek yogurt", (mult*3.0).toFixed(2)+" kg","Snacks & pre‑bed"],
+      ["Pantry","Spices/sauces", "as needed","Garlic, paprika, soy, chili, honey"]
+    ];
+  }
+  function renderShop(){
+    const ws = weekKey(today);
+    document.getElementById("shopWeek").textContent = ws.replace("w-","") + " → +6d";
+    const phase = phaseFor(today);
+    const rows = shoppingBase(phase);
+    const tb = document.querySelector("#shoppingTable tbody"); tb.innerHTML="";
+    rows.forEach(r=>{
+      const tr=document.createElement("tr");
+      r.forEach((cell,i)=>{ const td=document.createElement("td"); td.textContent = cell; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+    document.getElementById("exportShop").onclick = ()=>{
+      const csv = ["Category,Item,Qty,Notes"].concat(rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(","))).join("\n");
+      downloadText("Shopping-"+ws+".csv", csv);
+    };
+  }
+  function renderPrep(){
+    const steps=[
+      "Preheat oven 220°C (fan 200°C); line 2 pans with parchment.",
+      "Start rice: 600 g dry (1:1.8 water), simmer 15–18 min, rest 10.",
+      "Cube 1.5–1.8 kg chicken; toss with 1–2 tbsp oil + spices; spread on pan.",
+      "Roast chicken 220°C for 18–22 min to 74°C internal; rest 5, portion 150–180 g.",
+      "Chop 1.5–1.8 kg mixed veg; store raw for quick 6–8 min stir‑fries.",
+      "Portion rice: 180–250 g cooked; veg 200–250 g; add 5–10 g oil per meal."
+    ];
+    const ul=el("prepList"); ul.innerHTML=""; steps.forEach(t=>{ const li=document.createElement("li"); li.textContent=t; ul.appendChild(li); });
+  }
+
+  // ---------- Weight tracker & trend ----------
+  function addWeight(dateIso, kg){
+    const s=getState(); s.weight=s.weight||[]; s.weight.push({d:dateIso,w:kg}); s.weight.sort((a,b)=>a.d.localeCompare(b.d)); save(s);
+    renderWeight();
+  }
+  function renderWeight(){
+    const s=getState(); const tbl=el("wtTable").querySelector("tbody"); tbl.innerHTML="";
+    (s.weight||[]).forEach(row=>{ const tr=document.createElement("tr"); tr.innerHTML=`<td>${row.d}</td><td>${row.w}</td>`; tbl.appendChild(tr); });
+    // 7-day moving average rate (per week)
+    const w=s.weight||[]; if(w.length>=2){
+      const last7 = w.slice(-7); const first = last7[0]; const last = last7[last7.length-1];
+      const days = Math.max(1,(new Date(last.d)-new Date(first.d))/(1000*60*60*24));
+      const ratePerWeek = (last.w - first.w) / days * 7;
+      el("trendText").textContent = (ratePerWeek>0?"+":"") + ratePerWeek.toFixed(2) + " kg/wk";
+      const pct = Math.min(100, Math.abs(ratePerWeek)*100/1.0); // scale bar
+      el("trendBar").style.width = pct+"%";
+      // Auto-adjust? (beer is free; adjust food if off target)
+      if(getSetting("auto")){
+        const phase = phaseFor(today);
+        const targetMin = phase==="Bulk"?0.25:-0.75;
+        const targetMax = phase==="Bulk"?0.50:-0.50;
+        if(ratePerWeek < targetMin || ratePerWeek > targetMax){
+          const dir = ratePerWeek < targetMin ? +200 : -200; // eat more if gaining too slow (bulk) or losing too fast (cut)
+          const s2=getState(); s2.kcalAdj = (s2.kcalAdj||0) + dir; s2.kcalAdj = Math.max(-600, Math.min(600, s2.kcalAdj)); save(s2);
+          el("lastAdjust").textContent = (dir>0?"+200":"−200")+" kcal applied (total "+(s2.kcalAdj)+")";
+        }
+    }
+    }
+  }
+
+  // ---------- History (progression) ----------
+  function renderHistory(){
+    const s=getState(); const box=el("history"); box.innerHTML="";
+    const hist = s.history||{};
+    Object.keys(hist).forEach(name=>{
+      const card=document.createElement("div"); card.className="card";
+      const rows=hist[name]; const last=rows[rows.length-1];
+      card.innerHTML=`<div class="row"><strong>${name}</strong> <span class="label">Last: ${last.sets.map(s=>s.w+"×"+s.r).join(", ")}</span></div>`;
+      box.appendChild(card);
+    });
+  }
+
+  // ---------- Chat ----------
   function chatLoad(){ const s=load(); s.chat=s.chat||[]; save(s); return s.chat; }
   function chatSave(arr){ const s=load(); s.chat=arr; save(s); }
-  function chatRender(){
-    const box = document.getElementById("chatBox"); box.innerHTML="";
-    chatLoad().forEach(m => {
-      const line = document.createElement("div");
-      line.style.margin="6px 0";
-      line.innerHTML = `<span class="chip">${m.role}</span> ${m.text}`;
-      box.appendChild(line);
-    });
-    box.scrollTop = box.scrollHeight;
-  }
-  function chatSend(text, role="you"){
-    const arr = chatLoad(); arr.push({role, text, t: Date.now()}); chatSave(arr); chatRender();
-    // Simple command parser
-    if(text.startsWith("/")){
-      const res = applyCommand(text);
-      if(res) { const arr2 = chatLoad(); arr2.push({role:"coach", text: res, t: Date.now()}); chatSave(arr2); chatRender(); }
-    }
-  }
-  function applyCommand(cmd){
-    const parts = cmd.trim().split(/\s+/);
-    if(parts[0]==="/swap" && parts[1]==="dinner"){
-      // Swap today's dinner
-      const dstr = dateStr(today); const mondayIndex=(today.getDay()+6)%7; const type=weeklyPlan[mondayIndex];
-      const meals = mealMap[type]; meals.dinner = parts.slice(2).join(" ") || meals.dinner; return "Dinner swapped to: " + meals.dinner;
-    }
-    if(parts[0]==="/add" && parts[1]==="spin"){
-      // Mark a weekday as spin
-      const want = (parts[2]||"Mon").slice(0,3).toLowerCase();
-      const map = {mon:0,tue:1,wed:2,thu:3,fri:4,sat:5,sun:6};
-      const idx = map[want] ?? 2;
-      weeklyPlan[idx] = "Spin"; renderCalendar(); renderToday(); return "Added a Spin day on " + Object.keys(map)[idx];
-    }
-    if(parts[0]==="/macro" && parts[1]==="bump"){
-      const delta = parseInt(parts[2]||"0",10); setSetting("kcalDelta", delta); return "Daily target adjusted by " + delta + " kcal.";
-    }
-    if(parts[0]==="/help"){
-      return "Commands: /swap dinner [item], /add spin [Mon..Sun], /macro bump [+/-cals]";
-    }
-    return "Not sure what that means. Try /help.";
+  function chatRender(){ const box=el("chatBox"); box.innerHTML=""; chatLoad().forEach(m=>{ const div=document.createElement("div"); div.style.margin="6px 0"; div.innerHTML=`<span class="pill">${m.role}</span> ${m.text}`; box.appendChild(div); }); box.scrollTop=box.scrollHeight; }
+  function chatSend(text, role="you"){ const arr=chatLoad(); arr.push({role,text,t:Date.now()}); chatSave(arr); chatRender(); if(text.startsWith("/")) applyCmd(text); }
+  function applyCmd(cmd){
+    const p=cmd.trim().split(/\s+/);
+    if(p[0]==="/add" && p[1]==="beer"){ addBeer(1); chatSend("Logged 1 beer 🍺","coach"); return; }
+    if(p[0]==="/set" && p[1]==="rest"){ const v=parseInt(p[2]||"90",10); setSetting("restC",v); setSetting("restA",Math.max(45,Math.round(v*0.66))); chatSend(`Rest set to ${v}s compounds / ${Math.max(45,Math.round(v*0.66))}s accessories`,"coach"); return; }
+    if(p[0]==="/swap" && p[1]==="type"){ const v=p[2]||"Push"; const k=iso(today); setDayType(k,v); const s=getState(); s.days[k].type=v; save(s); renderToday(); chatSend("Today set to "+v,"coach"); return; }
   }
 
-  // ---------- TABS / UI ----------
-  function selectTab(name){
-    document.querySelectorAll(".tab").forEach(el => el.classList.toggle("active", el.dataset.tab===name));
-    ["today","calendar","shopping","prep","progression","chat","settings"].forEach(id=>{
-      document.getElementById("tab-"+id).classList.toggle("hidden", id!==name);
+  // ---------- Util ----------
+  function downloadText(name, text){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:"text/plain"})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),500); }
+
+  // ---------- Tab wiring ----------
+  document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+    const name=t.dataset.tab; document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active", x===t));
+    ["today","calendar","shopping","prep","progression","weight","chat","settings"].forEach(id=>{
+      document.getElementById("tab-"+id).style.display = (id===name)?"block":"none";
     });
     if(name==="calendar") renderCalendar();
     if(name==="shopping") renderShop();
     if(name==="prep") renderPrep();
-    if(name==="progression"){ document.getElementById("progDate").value = dateStr(today); renderSessions(dateStr(today)); }
+    if(name==="progression") renderHistory();
+    if(name==="weight") renderWeight();
     if(name==="chat") chatRender();
-  }
+  }));
 
-  function updateStats(){
-    const total = pointsTotal(); document.getElementById("pointsTotal").textContent = total;
-    document.getElementById("pointsPill").textContent = total + " pts";
-    const b = badgesFrom(total); document.getElementById("badgesCount").textContent = b.count; document.getElementById("latestBadge").textContent = b.latest;
-    document.getElementById("streakDays").textContent = streak()+" days";
-  }
-
-  function downloadText(name, text){
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([text], {type:"text/plain"}));
-    a.download = name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href), 500);
-  }
-
-  // ---------- INIT ----------
-  document.getElementById("holidayDate").value = dateStr(getHoliday());
-  document.getElementById("ptsWorkout").value = getSetting("ptsWorkout", 10);
-  document.getElementById("ptsMeals").value = getSetting("ptsMeals", 5);
-
-  document.querySelectorAll(".tab").forEach(el=> el.addEventListener("click", ()=> selectTab(el.dataset.tab) ));
-
-  document.getElementById("exportData").onclick = ()=> downloadText("HMB-Coach-Data.json", localStorage.getItem(KEY)||"{}");
-  document.getElementById("importData").onclick = ()=> document.getElementById("importFile").click();
-  document.getElementById("importFile").addEventListener("change", (ev)=>{
-    const f = ev.target.files[0]; if(!f) return;
-    const r = new FileReader(); r.onload = ()=>{ try { JSON.parse(r.result); localStorage.setItem(KEY, r.result); location.reload(); } catch(e){ alert("Invalid JSON"); } };
-    r.readAsText(f);
+  // Weight tab inputs
+  document.getElementById("wtAdd").addEventListener("click",()=>{
+    const d = document.getElementById("wtDate").value || iso(today);
+    const v = parseFloat(document.getElementById("wtVal").value||"");
+    if(!v){ alert("Enter weight"); return; }
+    addWeight(d, v);
+  });
+  document.getElementById("wtExport").addEventListener("click",()=>{
+    const s=getState(); const rows=(s.weight||[]).map(r=>`${r.d},${r.w}`).join("\n");
+    downloadText("weights.csv","date,weight\n"+rows);
   });
 
-  document.getElementById("regenList").onclick = renderShop;
-  document.getElementById("clearList").onclick = ()=>{ const {key}=loadShop(); saveShop(key, []); renderShop(); };
-  document.getElementById("addRow").onclick = ()=>{ const {key, rows}=loadShop(); rows.push(["","","","", "0"]); saveShop(key, rows); renderShop(); };
+  // Chat
+  document.getElementById("sendMsg").addEventListener("click",()=>{
+    const v=document.getElementById("chatInput").value.trim(); if(!v) return; document.getElementById("chatInput").value=""; chatSend(v,"you");
+  });
+  document.getElementById("exportChat").addEventListener("click",()=>{
+    const arr=chatLoad(); downloadText("chat.txt", arr.map(m=>`[${new Date(m.t).toLocaleString()}] ${m.role}: ${m.text}`).join("\n"));
+  });
 
-  document.getElementById("ptsWorkout").addEventListener("change", (e)=> setSetting("ptsWorkout", parseInt(e.target.value||"10",10)));
-  document.getElementById("ptsMeals").addEventListener("change", (e)=> setSetting("ptsMeals", parseInt(e.target.value||"5",10)));
-  document.getElementById("holidayDate").addEventListener("change", (e)=> setSetting("holiday", e.target.value));
+  // Settings wiring
+  document.getElementById("holidayDate").value = getSetting("holiday");
+  document.getElementById("cutDate").value = getSetting("cut");
+  document.getElementById("bulkBase").value = getSetting("bulkBase");
+  document.getElementById("cutBase").value = getSetting("cutBase");
+  document.getElementById("autoAdj").checked = getSetting("auto");
+  document.getElementById("beerPerWeek").value = getSetting("beer");
+  document.getElementById("restComp").value = getSetting("restC");
+  document.getElementById("restAcc").value = getSetting("restA");
+  document.getElementById("holidayDate").addEventListener("change", e=>setSetting("holiday", e.target.value));
+  document.getElementById("cutDate").addEventListener("change", e=>setSetting("cut", e.target.value));
+  document.getElementById("bulkBase").addEventListener("change", e=>setSetting("bulkBase", parseInt(e.target.value||"3200",10)));
+  document.getElementById("cutBase").addEventListener("change", e=>setSetting("cutBase", parseInt(e.target.value||"2700",10)));
+  document.getElementById("autoAdj").addEventListener("change", e=>setSetting("auto", e.target.checked));
+  document.getElementById("beerPerWeek").addEventListener("change", e=>setSetting("beer", parseInt(e.target.value||"4",10)));
+  document.getElementById("restComp").addEventListener("change", e=>setSetting("restC", parseInt(e.target.value||"90",10)));
+  document.getElementById("restAcc").addEventListener("change", e=>setSetting("restA", parseInt(e.target.value||"60",10)));
 
-  document.getElementById("sendMsg").onclick = ()=>{
-    const v = document.getElementById("chatInput").value.trim(); if(!v) return;
-    chatSend(v, "you"); document.getElementById("chatInput").value="";
-  };
-  document.getElementById("exportChat").onclick = ()=>{
-    const chat = chatLoad(); downloadText("HMB-Chat.txt", chat.map(m=>`[${new Date(m.t).toLocaleString()}] ${m.role}: ${m.text}`).join("\n"));
-  };
-  document.getElementById("clearChat").onclick = ()=>{ if(confirm("Clear chat?")){ const s=load(); s.chat=[]; save(s); chatRender(); } };
-
-  document.getElementById("progDaySel").addEventListener("change", ()=> renderSessions(dateStr(today)));
-  document.getElementById("progDate").addEventListener("change", (e)=> renderSessions(e.target.value));
-  document.getElementById("addSession").addEventListener("click", addSession);
-
-  function initToday(){
-    renderToday(); renderCalendar(); updateStats();
+  // Init
+  function init(){
+    renderToday();
+    renderCalendar();
+    renderShop();
+    renderPrep();
   }
-  initToday();
+  init();
 })();
 </script>
 </body>
