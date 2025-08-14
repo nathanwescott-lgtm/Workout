@@ -1,251 +1,132 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2674.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Holiday Coach</title>
+<style>
+  :root{
+    --primary:#002FA7; /* Yves Klein Blue */
+    --secondary:#7BB661; /* Brat Green */
+    --bg:#121212; --text:#fff; --muted:#aaa; --card:#1E1E1E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text)}
+  header{background:var(--primary);padding:14px;text-align:center;font-weight:700}
+  .card{background:var(--card);border-radius:10px;padding:14px;margin:12px}
+  h2{color:var(--primary)} h3{color:var(--secondary)}
+  .countdown{background:var(--secondary);color:#000;padding:8px;text-align:center;font-weight:700}
+  .nav{position:fixed;bottom:0;left:0;right:0;display:flex;gap:8px;background:var(--card);padding:10px}
+  .nav button{flex:1;background:var(--secondary);border:0;border-radius:8px;color:#000;font-weight:700;padding:10px;cursor:pointer}
+</style>
 </head>
 <body>
-<p class="p1"><!DOCTYPE html></p>
-<p class="p1"><html lang="en"></p>
-<p class="p1"><head></p>
-<p class="p1"><meta charset="UTF-8"></p>
-<p class="p1"><meta name="viewport" content="width=device-width, initial-scale=1.0"></p>
-<p class="p1"><title>Holiday Coach</title></p>
-<p class="p1"><link rel="manifest" href="manifest.json"></p>
-<p class="p1"><style></p>
-<p class="p1">/* ===== Theme Colors ===== */</p>
-<p class="p1">:root {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--primary: #002FA7; /* Yves Klein Blue */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--secondary: #7BB661; /* Brat Green */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--background: #121212;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--text-light: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--text-muted: #aaaaaa;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>--card-bg: #1E1E1E;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* ===== Global Styles ===== */</p>
-<p class="p1">body {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-family: Arial, Helvetica, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--background);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--text-light);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 0;</p>
-<p class="p1">}</p>
-<p class="p1">header {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.4em;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-weight: bold;</p>
-<p class="p1">}</p>
-<p class="p1">button {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--secondary);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px 15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 6px;</p>
-<p class="p1">}</p>
-<p class="p1">button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0.9;</p>
-<p class="p1">}</p>
-<p class="p1">.card {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 10px;</p>
-<p class="p1">}</p>
-<p class="p1">h2 {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--primary);</p>
-<p class="p1">}</p>
-<p class="p1">h3 {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: var(--secondary);</p>
-<p class="p1">}</p>
-<p class="p1">.countdown {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--secondary);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>font-weight: bold;</p>
-<p class="p1">}</p>
-<p class="p1">.navbar {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>justify-content: space-around;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>background-color: var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>width: 100%;</p>
-<p class="p1">}</p>
-<p class="p1">.navbar button {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>margin: 0 5px;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* Responsive */</p>
-<p class="p1">@media (max-width: 600px) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>header { font-size: 1.2em; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>button { padding: 8px 10px; }</p>
-<p class="p1">}</p>
-<p class="p1"></style></p>
-<p class="p1"></head></p>
-<p class="p1"><body></p>
-<p class="p1"><header>Holiday Coach 🏋️‍♂️🌴</header></p>
-<p class="p1"><div id="countdown" class="countdown"></div></p>
-<p class="p2"><br></p>
-<p class="p1"><main id="app"></p>
-<p class="p1"><span class="Apple-converted-space">  </span><div id="home" class="card"></p>
-<p class="p1"><span class="Apple-converted-space">    </span><h2>Welcome Back!</h2></p>
-<p class="p1"><span class="Apple-converted-space">    </span><p id="welcome-msg">Let's crush your goals for today.</p></p>
-<p class="p1"><span class="Apple-converted-space">    </span><div id="today-workout"></div></p>
-<p class="p1"><span class="Apple-converted-space">    </span><div id="today-meals"></div></p>
-<p class="p1"><span class="Apple-converted-space">  </span></div></p>
-<p class="p1"></main></p>
-<p class="p2"><br></p>
-<p class="p1"><div class="navbar"></p>
-<p class="p1"><span class="Apple-converted-space">  </span><button onclick="showTab('home')">Home</button></p>
-<p class="p1"><span class="Apple-converted-space">  </span><button onclick="showTab('workouts')">Workouts</button></p>
-<p class="p1"><span class="Apple-converted-space">  </span><button onclick="showTab('nutrition')">Meals</button></p>
-<p class="p1"><span class="Apple-converted-space">  </span><button onclick="showTab('tracking')">Tracking</button></p>
-<p class="p1"></div></p>
-<p class="p2"><br></p>
-<p class="p1"><script></p>
-<p class="p1">// ===== Countdown Logic =====</p>
-<p class="p1">function updateCountdown() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const holiday = new Date("October 25, 2025 00:00:00").getTime();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const now = new Date().getTime();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const distance = holiday - now;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (distance < 0) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("countdown").innerText = "Holiday time! 🏝";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const days = Math.floor(distance / (1000 * 60 * 60 * 24));</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("countdown").innerText =</p>
-<p class="p1"><span class="Apple-converted-space">    </span>days + " days until holiday – stay on track!";</p>
-<p class="p1">}</p>
-<p class="p1">setInterval(updateCountdown, 1000 * 60 * 60);</p>
-<p class="p1">updateCountdown();</p>
-<p class="p2"><br></p>
-<p class="p1">// ===== Tab Switching =====</p>
-<p class="p1">function showTab(tabId) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('#app > div').forEach(div => {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>div.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById(tabId).style.display = 'block';</p>
-<p class="p1">}</p>
-<p class="p1"></script><!-- ===== Workouts Tab ===== --></p>
-<p class="p1"><div id="workouts" class="card" style="display:none;"></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h2>Workouts</h2></p>
-<p class="p1"><span class="Apple-converted-space">  </span><p>Select your workout for today and hit start for guided mode.</p></p>
-<p class="p1"><span class="Apple-converted-space">  </span><div id="workout-list"></div></p>
-<p class="p1"></div></p>
-<p class="p2"><br></p>
-<p class="p1"><!-- ===== Nutrition Tab ===== --></p>
-<p class="p1"><div id="nutrition" class="card" style="display:none;"></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h2>Meals & Snacks</h2></p>
-<p class="p1"><span class="Apple-converted-space">  </span><div id="meal-plan"></div></p>
-<p class="p1"></div></p>
-<p class="p2"><br></p>
-<p class="p1"><!-- ===== Tracking Tab ===== --></p>
-<p class="p1"><div id="tracking" class="card" style="display:none;"></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h2>Tracking</h2></p>
-<p class="p1"><span class="Apple-converted-space">  </span><div></p>
-<p class="p1"><span class="Apple-converted-space">    </span><label>Current Weight (kg):</label></p>
-<p class="p1"><span class="Apple-converted-space">    </span><input type="number" id="weight-input" value="75"></p>
-<p class="p1"><span class="Apple-converted-space">    </span><button onclick="saveWeight()">Save</button></p>
-<p class="p1"><span class="Apple-converted-space">  </span></div></p>
-<p class="p1"><span class="Apple-converted-space">  </span><div id="weight-history"></div></p>
-<p class="p1"></div></p>
-<p class="p2"><br></p>
-<p class="p1"><script></p>
-<p class="p1">// ===== Preloaded Workouts =====</p>
-<p class="p1">const workouts = [</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Full Body Strength", exercises: ["Barbell Squat", "Incline Bench Press", "Dumbbell Row", "Overhead Press", "Bicep Curl", "Tricep Extension"] },</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Upper Body", exercises: ["Incline Bench Press", "Overhead Press", "Dumbbell Row", "Bicep Curl", "Tricep Extension"] },</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Lower Body", exercises: ["Barbell Squat", "Romanian Deadlift", "Lunge", "Calf Raise"] }</p>
-<p class="p1">];</p>
-<p class="p2"><br></p>
-<p class="p1">// ===== Preloaded Meals =====</p>
-<p class="p1">const meals = {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>breakfast: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"150g Greek yogurt",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"50g oats",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"60g vegan protein (Bulk Powders)",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"6g creatine",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"100g cherry juice",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"100g berries",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"25g peanut butter"</p>
-<p class="p1"><span class="Apple-converted-space">  </span>],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>lunch: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"Chicken–rice–veg base (portions scale for bulk/cut)"</p>
-<p class="p1"><span class="Apple-converted-space">  </span>],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>snack: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"150g Greek yogurt",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"100g berries",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"30g peanuts",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"50g smooth peanut butter",</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"15g honey"</p>
-<p class="p1"><span class="Apple-converted-space">  </span>],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>dinner: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"Chicken–rice–veg base variation"</p>
-<p class="p1"><span class="Apple-converted-space">  </span>]</p>
-<p class="p1">};</p>
-<p class="p2"><br></p>
-<p class="p1">// ===== Display Today’s Workout =====</p>
-<p class="p1">document.getElementById("today-workout").innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Today's Workout</h3></p>
-<p class="p1"><span class="Apple-converted-space">  </span><ul>${workouts[0].exercises.map(e => `<li>${e}</li>`).join("")}</ul></p>
-<p class="p1">`;</p>
-<p class="p2"><br></p>
-<p class="p1">// ===== Display Meals =====</p>
-<p class="p1">document.getElementById("today-meals").innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Today's Meals</h3></p>
-<p class="p1"><span class="Apple-converted-space">  </span><ul></p>
-<p class="p1"><span class="Apple-converted-space">    </span>${meals.breakfast.map(m => `<li>${m}</li>`).join("")}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>${meals.lunch.map(m => `<li>${m}</li>`).join("")}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>${meals.snack.map(m => `<li>${m}</li>`).join("")}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>${meals.dinner.map(m => `<li>${m}</li>`).join("")}</p>
-<p class="p1"><span class="Apple-converted-space">  </span></ul></p>
-<p class="p1">`;</p>
-<p class="p2"><br></p>
-<p class="p1">// ===== Meal Plan Tab =====</p>
-<p class="p1">document.getElementById("meal-plan").innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Breakfast</h3><ul>${meals.breakfast.map(m => `<li>${m}</li>`).join("")}</ul></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Lunch</h3><ul>${meals.lunch.map(m => `<li>${m}</li>`).join("")}</ul></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Snack</h3><ul>${meals.snack.map(m => `<li>${m}</li>`).join("")}</ul></p>
-<p class="p1"><span class="Apple-converted-space">  </span><h3>Dinner</h3><ul>${meals.dinner.map(m => `<li>${m}</li>`).join("")}</ul></p>
-<p class="p1">`;</p>
-<p class="p1"></script><script></p>
-<p class="p1">// ===== Weight Tracking =====</p>
-<p class="p1">let weightHistory = JSON.parse(localStorage.getItem("weightHistory")) || [];</p>
-<p class="p2"><br></p>
-<p class="p1">function saveWeight() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const weight = parseFloat(document.getElementById("weight-input").value);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (!isNaN(weight)) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const date = new Date().toLocaleDateString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>weightHistory.push({ date, weight });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>localStorage.setItem("weightHistory", JSON.stringify(weightHistory));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderWeightHistory();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function renderWeightHistory() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const list = weightHistory.map(entry => `<li>${entry.date}: ${entry.weight} kg</li>`).join("");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("weight-history").innerHTML = `<ul>${list}</ul>`;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">renderWeightHistory();</p>
-<p class="p1"></script></p>
-<p class="p2"><br></p>
-<p class="p1"></body></p>
-<p class="p1"></html></p>
+<header>Holiday Coach 🏋️‍♂️🌴</header>
+<div id="countdown" class="countdown">Loading…</div>
+
+<main id="app">
+  <div id="home" class="card">
+    <h2>Welcome Back!</h2>
+    <p id="welcome-msg">Let's crush your goals for today.</p>
+    <div id="today-workout"></div>
+    <div id="today-meals"></div>
+  </div>
+
+  <div id="workouts" class="card" style="display:none">
+    <h2>Workouts</h2>
+    <p>Select your workout for today and hit start for guided mode.</p>
+    <div id="workout-list"></div>
+  </div>
+
+  <div id="nutrition" class="card" style="display:none">
+    <h2>Meals & Snacks</h2>
+    <div id="meal-plan"></div>
+  </div>
+
+  <div id="tracking" class="card" style="display:none">
+    <h2>Tracking</h2>
+    <div>
+      <label>Current Weight (kg): </label>
+      <input type="number" id="weight-input" value="75">
+      <button id="save-weight">Save</button>
+    </div>
+    <div id="weight-history" style="margin-top:8px"></div>
+  </div>
+</main>
+
+<div class="nav">
+  <button onclick="showTab('home')">Home</button>
+  <button onclick="showTab('workouts')">Workouts</button>
+  <button onclick="showTab('nutrition')">Meals</button>
+  <button onclick="showTab('tracking')">Tracking</button>
+</div>
+
+<script>
+// Countdown
+function updateCountdown(){
+  const holiday = new Date("October 25, 2025 00:00:00").getTime();
+  const now = Date.now(), d = holiday - now;
+  if(d < 0){ document.getElementById("countdown").textContent = "Holiday time! 🏝"; return; }
+  const days = Math.floor(d / 86400000);
+  document.getElementById("countdown").textContent = days + " days until holiday – stay on track!";
+}
+updateCountdown(); setInterval(updateCountdown, 3600000);
+
+// Tabs
+function showTab(id){
+  document.querySelectorAll('#app > div').forEach(el => el.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+// Data
+const workouts = [
+  { name:"Full Body Strength", exercises:["Barbell Squat","Incline Bench Press","Dumbbell Row","Overhead Press","Bicep Curl","Tricep Extension"] },
+  { name:"Upper Body", exercises:["Incline Bench Press","Overhead Press","Dumbbell Row","Bicep Curl","Tricep Extension"] },
+  { name:"Lower Body", exercises:["Barbell Squat","Romanian Deadlift","Lunge","Calf Raise"] }
+];
+const meals = {
+  breakfast:[
+    "150g Greek yogurt","50g oats","60g vegan protein (Bulk Powders)",
+    "6g creatine","100g cherry juice","100g berries","25g peanut butter"
+  ],
+  lunch:["Chicken–rice–veg base (portions scale for bulk/cut)"],
+  snack:["150g Greek yogurt","100g berries","30g peanuts","50g smooth peanut butter","15g honey"],
+  dinner:["Chicken–rice–veg base variation"]
+};
+
+// Render Today
+document.getElementById("today-workout").innerHTML =
+  "<h3>Today's Workout</h3><ul>" + workouts[0].exercises.map(e=>`<li>${e}</li>`).join("") + "</ul>";
+document.getElementById("today-meals").innerHTML =
+  "<h3>Today's Meals</h3><ul>"
+  + meals.breakfast.map(m=>`<li>${m}</li>`).join("")
+  + meals.lunch.map(m=>`<li>${m}</li>`).join("")
+  + meals.snack.map(m=>`<li>${m}</li>`).join("")
+  + meals.dinner.map(m=>`<li>${m}</li>`).join("")
+  + "</ul>";
+
+// Meals Tab
+document.getElementById("meal-plan").innerHTML =
+  "<h3>Breakfast</h3><ul>"+meals.breakfast.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Lunch</h3><ul>"+meals.lunch.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Snack</h3><ul>"+meals.snack.map(m=>`<li>${m}</li>`).join("")+"</ul>"
++ "<h3>Dinner</h3><ul>"+meals.dinner.map(m=>`<li>${m}</li>`).join("")+"</ul>";
+
+// Weight tracking
+let weightHistory = JSON.parse(localStorage.getItem("weightHistory")||"[]");
+function renderWeightHistory(){
+  const html = "<ul>"+weightHistory.map(x=>`<li>${x.date}: ${x.weight} kg</li>`).join("")+"</ul>";
+  document.getElementById("weight-history").innerHTML = html;
+}
+document.getElementById("save-weight").addEventListener("click", ()=>{
+  const v = parseFloat(document.getElementById("weight-input").value);
+  if(!isNaN(v)){
+    weightHistory.push({date: new Date().toLocaleDateString(), weight: v});
+    localStorage.setItem("weightHistory", JSON.stringify(weightHistory));
+    renderWeightHistory();
+  }
+});
+renderWeightHistory();
+</script>
 </body>
 </html>
